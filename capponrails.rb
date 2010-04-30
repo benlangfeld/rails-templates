@@ -11,8 +11,6 @@ cappCommand = "capp gen" + appName + " " + arguments
 run cappCommand
 run "mv " + appName + " Cappuccino"
 
-file ".gitignore", <<-END
-Cappuccino/Build/*
-END
+run "echo 'Cappuccino/Build/*' >> .gitignore"
 
 git :add => "Cappuccino", :commit => "-m 'Added Cappuccino'"
