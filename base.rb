@@ -15,13 +15,7 @@ run "cp config/database.yml config/database.yml.example"
 run "rm public/images/rails.png"
 run "rm public/index.html"
 
-file ".gitignore", <<-END
-.bundle
-log/*.log
-tmp/**/*
-config/database.yml
-db/*.sqlite3
-END
+run "echo 'config/database.yml' >> .gitignore"
 
 git :add => ".", :commit => "-m 'Base Rails app'"
 
