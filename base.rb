@@ -26,3 +26,7 @@ END
 git :add => ".", :commit => "-m 'Base Rails app'"
 
 run "bundle install"
+
+capp? = ask("Do you want to use Cappuccino also?")
+  apply "http://github.com/benlangfeld/rails-templates/raw/master/capponrails.rb"
+end

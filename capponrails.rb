@@ -1,5 +1,3 @@
-load_template "http://github.com/benlangfeld/rails-templates/raw/master/base.rb"
-
 arguments = ""
 if yes?("Do you want to use a CIB based app?")
   arguments = "-t NibApplication"
