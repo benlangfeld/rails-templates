@@ -10,7 +10,7 @@ generate :nifty:layout
 git :init
 
 run "echo 'TODO add readme content' > README"
-run "touch tmp/.gitignore log/.gitignore vendor/.gitignore"
+run("find . \\( -type d -empty \\) -and \\( -not -regex ./\\.git.* \\) -exec touch {}/.gitignore \\;")
 run "cp config/database.yml config/database.yml.example"
 run "rm public/images/rails.png"
 run "rm public/index.html"
@@ -24,3 +24,5 @@ db/*.sqlite3
 END
 
 git :add => ".", :commit => "-m 'Base Rails app'"
+
+run "bundle install"
