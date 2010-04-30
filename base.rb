@@ -24,3 +24,7 @@ run "bundle install"
 if yes?("Do you want to use Cappuccino also?")
   apply "http://github.com/benlangfeld/rails-templates/raw/master/capponrails.rb"
 end
+
+if yes("Push to GitHub?")
+  apply "http://github.com/benlangfeld/rails-templates/raw/master/github.rb"
+end
