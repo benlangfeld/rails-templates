@@ -1,10 +1,3 @@
-if yes?("Do you want to use RSpec for testing?")
-  gem "rspec-rails", ">= 2.0.0.beta.8"
-  gem "rspec", ">= 2.0.0.beta.8"
-  run "bundle install"
-  generate :rspec
-end
-
 generate "nifty:layout"
 
 git :init
@@ -37,6 +30,13 @@ end
 if yes?("Use formtastic?")
   gem 'formtastic'
   run "bundle instal"
+end
+
+if yes?("Do you want to use RSpec for testing?")
+  gem "rspec-rails", ">= 2.0.0.beta.8"
+  gem "rspec", ">= 2.0.0.beta.8"
+  run "bundle install"
+  generate :rspec
 end
 
 if yes?("Do you want to use Cappuccino?")
