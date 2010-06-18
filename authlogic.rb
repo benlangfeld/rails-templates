@@ -2,11 +2,12 @@ gem 'authlogic', :git => "git://github.com/odorcicd/authlogic.git", :branch => "
 run "bundle install"
 
 generate('nifty:scaffold', "user username:string email:string password:string new edit")
-generate('authlogic:session', "user_session")
-generate('nifty:scaffold', "user_session ! username:string password:string new destroy")
 
-#run "curl -s -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/user_sessions_controller.rb > app/controllers/user_sessions_controller.rb"
-#Still need to copy over user_session views
+#Generate user_session model, then copy views and controller
+generate('authlogic:session', "user_session")
+run "mkdir app/views/user_sessions"
+run "curl -s -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/new.html.erb > app/views/user_sessions/new.html.erb"
+run "curl -s -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/user_sessions_controller.rb > app/controllers/user_sessions_controller.rb"
 
 maybe_update_file :file => "app/models/user.rb", :action => "make User model act as authentication source", :unless_present => /authentic/,
                   :after => "class User < ActiveRecord::Base", :content => "  acts_as_authentic"
