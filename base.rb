@@ -15,7 +15,7 @@ git :add => ".", :commit => "-m 'Base Rails app'"
 run "bundle install"
 
 if yes?("Generate nifty layout?")
-  generate "nifty:layout"
+  generate "nifty:layout", "-f"
   git :add => ".", :commit => "-m 'Add nifty layout'"
 end
 
