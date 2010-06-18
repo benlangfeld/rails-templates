@@ -3,7 +3,7 @@ run "bundle install"
 
 run "curl -s -L http://github.com/benlangfeld/rails-templates/raw/master/resources/declarative_authorization/authorization_rules > config/authorization_rules.rb"
 
-maybe_update_file :file => "app/model/user.rb", :action => "update user model for role_symbols", 
+maybe_update_file :file => "app/models/user.rb", :action => "update user model for role_symbols", 
                   :unless_present => /role_symbols/, :before => "end", :content => (<<-CODE).gsub(/\A +| +\Z/, '')
 
                   def role_symbols

@@ -2,7 +2,7 @@ gem 'authlogic', :git => "git://github.com/odorcicd/authlogic.git", :branch => "
 run "bundle install"
 
 generate('nifty:scaffold', "user username:string email:string password:string new edit")
-generate('session', "user_session")
+generate('authlogic:session', "user_session")
 generate('nifty:scaffold', "user_session --skip-model username:string password:string new destroy")
 
 #run "curl -s -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/user_sessions_controller.rb > app/controllers/user_sessions_controller.rb"
