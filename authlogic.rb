@@ -5,16 +5,15 @@ generate('nifty:scaffold', "user username:string email:string password:string ne
 generate('session', "user_session")
 generate('nifty:scaffold', "user_session --skip-model username:string password:string new destroy")
 
-#run "curl -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/user_sessions_controller.rb > app/controllers/user_sessions_controller.rb"
-#run "curl -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/users_controller.rb > app/controllers/users_controller.rb"
-
-run "curl -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/user_session.rb > app/models/user_session.rb"
+#run "curl -s -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/user_sessions_controller.rb > app/controllers/user_sessions_controller.rb"
+run "curl -s -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/user_session.rb > app/models/user_session.rb"
 
 maybe_update_file :file => "app/models/user.rb", :action => "make User model act as authentication source", :unless_present => /authentic/,
                   :after => "class User < ActiveRecord::Base", :content => "  acts_as_authentic"
                   
 maybe_update_file :file => "app/controllers/application_controller.rb", :action => "update application controller", 
-                  :unless_present => /authentic/, :after => "class User < ActiveRecord::Base", :content => (<<-CODE).gsub(/\A +| +\Z/, '')
+                  :unless_present => /authentic/, :after => "class ApplicationController < ActionController::Base",
+                  :content => (<<-CODE).gsub(/\A +| +\Z/, '')
                   
                   helper :all
                   helper_method :current_user
@@ -29,6 +28,17 @@ maybe_update_file :file => "app/controllers/application_controller.rb", :action 
                   def current_user
                     return @current_user if defined?(@current_user)
                     @current_user = current_user_session && current_user_session.record
+                  end
+                  
+                  CODE
+
+maybe_update_file :file => "app/controllers/users_controller.rb", :action => "update users controller", 
+                  :unless_present => /current/, :after => "def edit", :content => (<<-CODE).gsub(/\A +| +\Z/, '')
+                  
+                  if params[:id] == "current"
+                    id = current_user.id
+                  else
+                    id = params[:id]
                   end
                   
                   CODE

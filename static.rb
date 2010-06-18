@@ -1,6 +1,6 @@
-run "curl -L http://github.com/benlangfeld/rails-templates/raw/master/resources/static/static_controller.rb > app/controllers/static_controller.rb"
+run "curl -s -L http://github.com/benlangfeld/rails-templates/raw/master/resources/static/static_controller.rb > app/controllers/static_controller.rb"
 run "mkdir app/views/static"
-run "curl -L http://github.com/benlangfeld/rails-templates/raw/master/resources/static/home.html.erb > app/views/static/home.html.erb"
+run "curl -s -L http://github.com/benlangfeld/rails-templates/raw/master/resources/static/home.html.erb > app/views/static/home.html.erb"
 
 route "root :to => 'static#home'"
 
