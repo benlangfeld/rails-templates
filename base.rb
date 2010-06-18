@@ -21,6 +21,10 @@ git :add => ".", :commit => "-m 'Base Rails app'"
 
 run "bundle install"
 
+if yes?("Add a simple static home page?")
+  apply "http://github.com/benlangfeld/rails-templates/raw/master/static.rb"
+end
+
 if yes?("Use ActiveRecord session store?")
   rake('db:sessions:create')
   initializer 'session_store.rb', <<-FILE
