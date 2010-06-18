@@ -5,7 +5,7 @@ generate('nifty:scaffold', "user username:string email:string password:string")
 
 generate(:migration, "AddAuthlogicToUsers")
 run "curl -s -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/add_authlogic_to_users.rb > db/migrate/temp.rb"
-inside (‘db/migrate’) do
+inside ('db/migrate') do
   #this grabs the new migration in your newly generated app
   run "find *_add_authlogic_to_users.rb | xargs mv temp.rb"
 end
