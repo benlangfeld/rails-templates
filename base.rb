@@ -10,7 +10,7 @@ generate "nifty:layout"
 git :init
 
 run "echo 'TODO add readme content' > README"
-run("find . \\( -type d -empty \\) -and \\( -not -regex ./\\.git.* \\) -exec touch {}/.gitignore \\;")
+run "find . \\( -type d -empty \\) -and \\( -not -regex ./\\.git.* \\) -exec touch {}/.gitignore \\;"
 run "cp config/database.yml config/database.yml.example"
 run "rm public/images/rails.png"
 run "rm public/index.html"
@@ -39,7 +39,7 @@ if yes?("Use formtastic?")
   run "bundle instal"
 end
 
-if yes?("Do you want to use Cappuccino also?")
+if yes?("Do you want to use Cappuccino?")
   apply "http://github.com/benlangfeld/rails-templates/raw/master/capponrails.rb"
 end
 
