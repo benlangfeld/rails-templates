@@ -4,10 +4,10 @@ run "bundle install"
 generate('nifty:scaffold', "user username:string email:string password:string")
 
 generate(:migration, "AddAuthlogicToUsers")
-inside (‘db/migrate’) do 
-  run "curl -s -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/add_authlogic_to_users.rb > temp.rb"
+run "curl -s -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/add_authlogic_to_users.rb > db/migrate/temp.rb"
+inside (‘db/migrate’) do
   #this grabs the new migration in your newly generated app
-  run “find *_add_authlogic_to_users.rb | xargs mv temp.rb”
+  run "find *_add_authlogic_to_users.rb | xargs mv temp.rb"
 end
 maybe_update_file :file => "app/views/users/_form.html.erb", :action => "update user form with password confirmation", 
                   :unless_present => /confirmation/, :before => "<p><%= f.submit %></p>",
