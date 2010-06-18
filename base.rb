@@ -18,14 +18,14 @@ if yes?("Add a simple static home page?")
   apply "http://github.com/benlangfeld/rails-templates/raw/master/static.rb"
 end
 
-if yes?("Use ActiveRecord session store?")
-  rake('db:sessions:create')
-  initializer 'session_store.rb', <<-FILE
-    ActionController::Base.session = { :session_key => '_#{(1..6).map { |x| (65 + rand(26)).chr }.join}_session', :secret => '#{(1..40).map { |x| (65 + rand(26)).chr }.join}' }
-    ActionController::Base.session_store = :active_record_store
-  FILE
-    
-end
+# if yes?("Use ActiveRecord session store?")
+#   rake('db:sessions:create')
+#   initializer 'session_store.rb', <<-FILE
+#     ActionController::Base.session = { :session_key => '_#{(1..6).map { |x| (65 + rand(26)).chr }.join}_session', :secret => '#{(1..40).map { |x| (65 + rand(26)).chr }.join}' }
+#     ActionController::Base.session_store = :active_record_store
+#   FILE
+#     
+# end
 
 if yes?("Use formtastic?")
   gem 'formtastic'
