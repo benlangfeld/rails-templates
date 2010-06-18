@@ -1,6 +1,6 @@
 if yes?("Do you want to use RSpec for testing?")
-  run "echo 'gem \"rspec-rails\", \">= 2.0.0.beta.8\"' >> Gemfile"
-  run "echo 'gem \"rspec\", \">= 2.0.0.beta.8\"' >> Gemfile"
+  gem "rspec-rails", ">= 2.0.0.beta.8"
+  gem "rspec", ">= 2.0.0.beta.8"
   run "bundle install"
   generate :rspec
 end
@@ -21,10 +21,32 @@ git :add => ".", :commit => "-m 'Base Rails app'"
 
 run "bundle install"
 
+if yes?("Use ActiveRecord session store?")
+  rake('db:sessions:create')
+  initializer 'session_store.rb', <<-FILE
+    ActionController::Base.session = { :session_key => '_#{(1..6).map { |x| (65 + rand(26)).chr }.join}_session', :secret => '#{(1..40).map { |x| (65 + rand(26)).chr }.join}' }
+    ActionController::Base.session_store = :active_record_store
+  FILE
+    
+end
+
+if yes?("Use formtastic?")
+  gem 'formtastic'
+  run "bundle instal"
+end
+
 if yes?("Do you want to use Cappuccino also?")
   apply "http://github.com/benlangfeld/rails-templates/raw/master/capponrails.rb"
 end
 
-if yes?("Push to GitHub?")
+if yes?("Use authlogic for simple authentication?")
+  apply "http://github.com/benlangfeld/rails-templates/raw/master/authlogic_basic.rb"
+end
+
+if yes?("Use declarative_authorization for simple authorization?")
+  apply "http://github.com/benlangfeld/rails-templates/raw/master/declarative_authorization.rb"
+end
+
+if yes?("Host on GitHub?")
   apply "http://github.com/benlangfeld/rails-templates/raw/master/github.rb"
 end
