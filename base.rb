@@ -1,5 +1,4 @@
 gem "nifty-generators"
-generate "nifty:layout"
 
 git :init
 
@@ -14,6 +13,11 @@ run "echo 'config/database.yml' >> .gitignore"
 git :add => ".", :commit => "-m 'Base Rails app'"
 
 run "bundle install"
+
+if yes?("Generate nifty layout?")
+  generate "nifty:layout"
+  git :add => ".", :commit => "-m 'Add nifty layout'"
+end
 
 if yes?("Add a simple static home page?")
   apply "http://github.com/benlangfeld/rails-templates/raw/master/static.rb"
