@@ -6,7 +6,6 @@ generate('authlogic:session', "user_session")
 generate('nifty:scaffold', "user_session --skip-model username:string password:string new destroy")
 
 #run "curl -s -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/user_sessions_controller.rb > app/controllers/user_sessions_controller.rb"
-run "curl -s -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/user_session.rb > app/models/user_session.rb"
 
 maybe_update_file :file => "app/models/user.rb", :action => "make User model act as authentication source", :unless_present => /authentic/,
                   :after => "class User < ActiveRecord::Base", :content => "  acts_as_authentic"
