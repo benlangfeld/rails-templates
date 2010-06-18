@@ -28,8 +28,7 @@ maybe_update_file :file => "app/models/user.rb", :action => "make User model act
                   :after => "class User < ActiveRecord::Base", :content => "  acts_as_authentic"
                   
 maybe_update_file :file => "app/controllers/application_controller.rb", :action => "update application controller", 
-                  :unless_present => /authentic/, :after => "class ApplicationController < ActionController::Base",
-                  :content => (<<-CODE).gsub(/\A +| +\Z/, '')
+                  :unless_present => /authentic/, :before => "end", :content => (<<-CODE).gsub(/\A +| +\Z/, '')
                   
                   helper :all
                   helper_method :current_user

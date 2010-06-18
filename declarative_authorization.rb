@@ -15,7 +15,7 @@ maybe_update_file :file => "app/models/user.rb", :action => "update user model f
                   CODE
                   
 maybe_update_file :file => "app/controllers/application_controller.rb", :action => "update application controller for permission_denied", 
-                  :unless_present => /permission_denied/, :before => "end", :content => (<<-CODE).gsub(/\A +| +\Z/, '')
+                  :unless_present => /permission_denied/, :before => "private", :content => (<<-CODE).gsub(/\A +| +\Z/, '')
                   
                   protected
 
