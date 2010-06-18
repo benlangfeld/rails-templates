@@ -9,6 +9,7 @@ run "curl -L http://github.com/benlangfeld/rails-templates/raw/master/resources/
 run "curl -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/user_sessions_controller.rb > app/controllers/user_sessions_controller.rb"
 run "curl -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/users_controller.rb > app/controllers/users_controller.rb"
 run "curl -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/user.rb > app/models/user.rb"
+run "curl -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/user_session.rb > app/models/user_session.rb"
 
 route 'match \'login\' => \'user_sessions#new\''
 route 'match \'logout\' => \'user_sessions#destroy\''
