@@ -1,3 +1,7 @@
+def y?(s)
+  yes?("\n#{s} (y/n)")
+end
+
 def maybe_update_file(options = {})
   old_contents = File.read(options[:file])
   look_for = options[:after] || options[:before] # but not both!
