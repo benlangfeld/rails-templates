@@ -29,7 +29,7 @@ end
 
 if yes?("Use formtastic?")
   gem 'formtastic'
-  run "bundle instal"
+  run "bundle install"
 end
 
 if yes?("Do you want to use RSpec for testing?")
