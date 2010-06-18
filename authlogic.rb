@@ -59,7 +59,7 @@ maybe_update_file :file => "app/controllers/users_controller.rb", :action => "up
                   
                   CODE
                   
-if File('app/views/layouts/application.html.erb').exists?
+if FileTest.exists?('app/views/layouts/application.html.erb')
 maybe_update_file :file => "app/views/layouts/application.html.erb", :action => "update nifty_layout with user_nav block", 
                   :unless_present => /user_nav/, :after => "<div id=\"container\">", :content => (<<-CODE).gsub(/\A +| +\Z/, '')
 
@@ -76,7 +76,7 @@ maybe_update_file :file => "app/views/layouts/application.html.erb", :action => 
                   CODE
 end
 
-if File('public/stylesheets/application.css').exists?
+if FileTest.exists?('public/stylesheets/application.css')
 maybe_update_file :file => "public/stylesheets/application.css", :action => "update stylesheet with user_nav block", 
                   :unless_present => /user_nav/, :before => "body", :content => (<<-CODE).gsub(/\A +| +\Z/, '')
 
