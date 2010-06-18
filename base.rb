@@ -40,7 +40,7 @@ if yes?("Do you want to use Cappuccino also?")
 end
 
 if yes?("Use authlogic for simple authentication?")
-  apply "http://github.com/benlangfeld/rails-templates/raw/master/authlogic_basic.rb"
+  apply "http://github.com/benlangfeld/rails-templates/raw/master/authlogic.rb"
 end
 
 if yes?("Use declarative_authorization for simple authorization?")
