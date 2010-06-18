@@ -59,6 +59,7 @@ maybe_update_file :file => "app/controllers/users_controller.rb", :action => "up
                   
                   CODE
                   
+if File('app/views/layouts/application.html.erb').exists?
 maybe_update_file :file => "app/views/layouts/application.html.erb", :action => "update nifty_layout with user_nav block", 
                   :unless_present => /user_nav/, :after => "<div id=\"container\">", :content => (<<-CODE).gsub(/\A +| +\Z/, '')
 
@@ -73,7 +74,9 @@ maybe_update_file :file => "app/views/layouts/application.html.erb", :action => 
                   </div>
 
                   CODE
+end
 
+if File('public/stylesheets/application.css').exists?
 maybe_update_file :file => "public/stylesheets/application.css", :action => "update stylesheet with user_nav block", 
                   :unless_present => /user_nav/, :before => "body", :content => (<<-CODE).gsub(/\A +| +\Z/, '')
 
@@ -83,6 +86,8 @@ maybe_update_file :file => "public/stylesheets/application.css", :action => "upd
                   }
 
                   CODE
+                  
+end
 
 route 'match \'login\' => \'user_sessions#new\''
 route 'match \'logout\' => \'user_sessions#destroy\''
