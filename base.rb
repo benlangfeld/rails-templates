@@ -1,3 +1,4 @@
+gem "nifty-generators"
 generate "nifty:layout"
 
 git :init
