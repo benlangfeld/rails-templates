@@ -43,8 +43,33 @@ maybe_update_file :file => "app/controllers/users_controller.rb", :action => "up
                   end
                   
                   CODE
+                  
+maybe_update_file :file => "app/views/layouts/application.html.erb", :action => "update nifty_layout with user_nav block", 
+                  :unless_present => /user_nav/, :after => "<div id=\"container\">", :content => (<<-CODE).gsub(/\A +| +\Z/, '')
+
+                  <div id="user_nav">
+                    <% if current_user %>
+                      <%= link_to "Edit Profile", edit_user_path(:current) %> |
+                      <%= link_to "Logout", logout_path %>
+                    <% else %>
+                      <%= link_to "Register", new_user_path %> |
+                      <%= link_to "Login", login_path %>
+                    <% end %>
+                  </div>
+
+                  CODE
+
+maybe_update_file :file => "public/stylesheets/application.css", :action => "update stylesheet with user_nav block", 
+                  :unless_present => /user_nav/, :before => "body", :content => (<<-CODE).gsub(/\A +| +\Z/, '')
+
+                  #user_nav {
+                    float: right;
+                    font-size: 12px;
+                  }
+
+                  CODE
 
 route 'match \'login\' => \'user_sessions#new\''
 route 'match \'logout\' => \'user_sessions#destroy\''
 
-git :add => ".", :commit => "-m 'Authlogic'"
+git :add => ".", :commit => "-m 'Added Authlogic'"
