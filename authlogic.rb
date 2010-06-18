@@ -1,7 +1,22 @@
 gem 'authlogic', :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
 run "bundle install"
 
-generate('nifty:scaffold', "user username:string email:string password:string new edit")
+generate('nifty:scaffold', "user username:string email:string password:string")
+
+generate(:migration, "AddAuthlogicToUsers")
+inside (‘db/migrate’) do 
+  run "curl -s -L http://github.com/benlangfeld/rails-templates/raw/master/resources/authlogic/add_authlogic_to_users.rb > temp.rb"
+  #this grabs the new migration in your newly generated app
+  run “find *_add_authlogic_to_users.rb | xargs mv temp.rb”
+end
+maybe_update_file :file => "app/views/users/_form.html.erb", :action => "update user form with password confirmation", 
+                  :unless_present => /confirmation/, :before => "<p><%= f.submit %></p>",
+                  :content => (<<-CODE).gsub(/\A +| +\Z/, '')
+                  <p>
+                    <%= f.label :password_confirmation %><br />
+                    <%= f.password_field :password_confirmation %>
+                  </p>
+                  CODE
 
 #Generate user_session model, then copy views and controller
 generate('authlogic:session', "user_session")
@@ -71,5 +86,6 @@ maybe_update_file :file => "public/stylesheets/application.css", :action => "upd
 
 route 'match \'login\' => \'user_sessions#new\''
 route 'match \'logout\' => \'user_sessions#destroy\''
+route 'resources :user_sessions'
 
 git :add => ".", :commit => "-m 'Added Authlogic'"

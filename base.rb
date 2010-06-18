@@ -40,6 +40,23 @@ if yes?("Generate nifty layout?")
   git :add => ".", :commit => "-m 'Add nifty layout'"
 end
 
+if yes?("Generate web-app-theme layout?")
+  gem "web-app-theme", :git => "http://github.com/stevehodgkiss/web-app-theme.git"
+  run "bundle install"
+  
+  options = []
+  
+  theme = ask("Which theme would you like to use? (none for default) ")
+  options += ["--theme="+theme] unless theme == ''
+  
+  app_name = ask("What is the name of the application?")
+  options += ["--app-name="+app_name] unless app_name == ''
+  
+  generate "web_app_theme:theme", options.flatten
+  
+  git :add => ".", :commit => "-m 'Add web-app-theme layout'"
+end
+
 if yes?("Add a simple static home page?")
   apply "http://github.com/benlangfeld/rails-templates/raw/master/static.rb"
 end
@@ -80,3 +97,5 @@ end
 if yes?("Host on GitHub?")
   apply "http://github.com/benlangfeld/rails-templates/raw/master/github.rb"
 end
+
+rake "db:migrate"
