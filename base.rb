@@ -1,9 +1,9 @@
 def y?(s)
-  yes?("\n#{s} (y/n)")
+  yes? "\n#{s} (y/n)"
 end
 
 def maybe_update_file(options = {})
-  old_contents = File.read(options[:file])
+  old_contents = File.read options[:file]
   look_for = options[:after] || options[:before] # but not both!
   return if options[:unless_present] && old_contents =~ options[:unless_present]
 
@@ -46,11 +46,11 @@ if yes?("Generate web-app-theme layout?")
 
   options = []
 
-  theme = ask("Which theme would you like to use? (none for default) ")
-  options += ["--theme="+theme] unless theme == ''
+  theme = ask "Which theme would you like to use? (none for default) "
+  options += ["--theme=#{theme}"] unless theme == ''
 
-  app_name = ask("What is the name of the application?")
-  options += ["--app-name="+app_name] unless app_name == ''
+  app_name = ask "What is the name of the application?"
+  options += ["--app-name=#{app_name}"] unless app_name == ''
 
   generate "web_app_theme:theme", options.flatten
 
