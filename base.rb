@@ -43,17 +43,17 @@ end
 if yes?("Generate web-app-theme layout?")
   gem "web-app-theme", :git => "http://github.com/stevehodgkiss/web-app-theme.git"
   run "bundle install"
-  
+
   options = []
-  
+
   theme = ask("Which theme would you like to use? (none for default) ")
   options += ["--theme="+theme] unless theme == ''
-  
+
   app_name = ask("What is the name of the application?")
   options += ["--app-name="+app_name] unless app_name == ''
-  
+
   generate "web_app_theme:theme", options.flatten
-  
+
   git :add => ".", :commit => "-m 'Add web-app-theme layout'"
 end
 
@@ -67,7 +67,7 @@ end
 #     ActionController::Base.session = { :session_key => '_#{(1..6).map { |x| (65 + rand(26)).chr }.join}_session', :secret => '#{(1..40).map { |x| (65 + rand(26)).chr }.join}' }
 #     ActionController::Base.session_store = :active_record_store
 #   FILE
-#     
+#
 # end
 
 if yes?("Use formtastic?")

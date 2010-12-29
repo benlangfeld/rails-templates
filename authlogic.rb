@@ -9,7 +9,7 @@ inside ('db/migrate') do
   #this grabs the new migration in your newly generated app
   run "find *_add_authlogic_to_users.rb | xargs mv temp.rb"
 end
-maybe_update_file :file => "app/views/users/_form.html.erb", :action => "update user form with password confirmation", 
+maybe_update_file :file => "app/views/users/_form.html.erb", :action => "update user form with password confirmation",
                   :unless_present => /confirmation/, :before => "<p><%= f.submit %></p>",
                   :content => (<<-CODE).gsub(/\A +| +\Z/, '')
                   <p>
@@ -26,10 +26,10 @@ run "curl -s -L http://github.com/benlangfeld/rails-templates/raw/master/resourc
 
 maybe_update_file :file => "app/models/user.rb", :action => "make User model act as authentication source", :unless_present => /authentic/,
                   :after => "class User < ActiveRecord::Base", :content => "  acts_as_authentic"
-                  
-maybe_update_file :file => "app/controllers/application_controller.rb", :action => "update application controller", 
+
+maybe_update_file :file => "app/controllers/application_controller.rb", :action => "update application controller",
                   :unless_present => /authentic/, :before => "end", :content => (<<-CODE).gsub(/\A +| +\Z/, '')
-                  
+
                   helper :all
                   helper_method :current_user
 
@@ -44,22 +44,22 @@ maybe_update_file :file => "app/controllers/application_controller.rb", :action 
                     return @current_user if defined?(@current_user)
                     @current_user = current_user_session && current_user_session.record
                   end
-                  
+
                   CODE
 
-maybe_update_file :file => "app/controllers/users_controller.rb", :action => "update users controller", 
+maybe_update_file :file => "app/controllers/users_controller.rb", :action => "update users controller",
                   :unless_present => /current/, :after => "def edit", :content => (<<-CODE).gsub(/\A +| +\Z/, '')
-                  
+
                   if params[:id] == "current"
                     id = current_user.id
                   else
                     id = params[:id]
                   end
-                  
+
                   CODE
-                  
+
 if FileTest.exists?('app/views/layouts/application.html.erb')
-maybe_update_file :file => "app/views/layouts/application.html.erb", :action => "update nifty_layout with user_nav block", 
+maybe_update_file :file => "app/views/layouts/application.html.erb", :action => "update nifty_layout with user_nav block",
                   :unless_present => /user_nav/, :after => "<div id=\"container\">", :content => (<<-CODE).gsub(/\A +| +\Z/, '')
 
                   <div id="user_nav">
@@ -76,7 +76,7 @@ maybe_update_file :file => "app/views/layouts/application.html.erb", :action => 
 end
 
 if FileTest.exists?('public/stylesheets/application.css')
-maybe_update_file :file => "public/stylesheets/application.css", :action => "update stylesheet with user_nav block", 
+maybe_update_file :file => "public/stylesheets/application.css", :action => "update stylesheet with user_nav block",
                   :unless_present => /user_nav/, :before => "body", :content => (<<-CODE).gsub(/\A +| +\Z/, '')
 
                   #user_nav {
@@ -85,7 +85,7 @@ maybe_update_file :file => "public/stylesheets/application.css", :action => "upd
                   }
 
                   CODE
-                  
+
 end
 
 route 'match \'login\' => \'user_sessions#new\''

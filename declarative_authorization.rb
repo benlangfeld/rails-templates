@@ -3,7 +3,7 @@ run "bundle install"
 
 run "curl -s -L http://github.com/benlangfeld/rails-templates/raw/master/resources/declarative_authorization/authorization_rules > config/authorization_rules.rb"
 
-maybe_update_file :file => "app/models/user.rb", :action => "update user model for role_symbols", 
+maybe_update_file :file => "app/models/user.rb", :action => "update user model for role_symbols",
                   :unless_present => /role_symbols/, :before => "end", :content => (<<-CODE).gsub(/\A +| +\Z/, '')
 
                   def role_symbols
@@ -11,12 +11,12 @@ maybe_update_file :file => "app/models/user.rb", :action => "update user model f
                     rolesymbols += [:member]
                     rolesymbols
                   end
-                  
+
                   CODE
-                  
-maybe_update_file :file => "app/controllers/application_controller.rb", :action => "update application controller for permission_denied", 
+
+maybe_update_file :file => "app/controllers/application_controller.rb", :action => "update application controller for permission_denied",
                   :unless_present => /permission_denied/, :before => "private", :content => (<<-CODE).gsub(/\A +| +\Z/, '')
-                  
+
                   protected
 
                   def permission_denied
