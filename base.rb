@@ -53,10 +53,6 @@ if y?("Annotate your models?")
 
 end
 
-if y?("Add a simple static home page?")
-  apply "#{@templates_path}/static.rb"
-end
-
 if y?("Host on GitHub?")
   apply "#{@templates_path}/github.rb"
 end

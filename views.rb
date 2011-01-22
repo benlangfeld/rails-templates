@@ -72,5 +72,28 @@ if y?("Generate web-app-theme layout?")
 end
 
 if y?("Use Cappuccino?")
-  apply "#{@templates_path}/capponrails.rb"
+  if y?("Use a CIB based app?")
+    arguments = "-t NibApplication"
+  else
+    arguments = "-t Application"
+  end
+
+  appName = ask "What's the name of the app?"
+
+  run "capp gen #{appName} #{arguments}"
+  run "mv #{appName} Cappuccino"
+
+  run "echo 'Cappuccino/Build/*' >> .gitignore"
+
+  git :add => "Cappuccino", :commit => "-m 'Added Cappuccino'"
+end
+
+if y?("Add a simple static home page?")
+  run "curl -s -L #{@templates_path}/resources/static/static_controller.rb > app/controllers/static_controller.rb"
+  run "mkdir app/views/static"
+  run "curl -s -L #{@templates_path}/resources/static/home.html.erb > app/views/static/home.html.erb"
+
+  route "root :to => 'static#home'"
+
+  git :add => ".", :commit => "-m 'Static home page'"
 end
