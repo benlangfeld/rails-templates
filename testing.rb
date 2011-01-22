@@ -1,4 +1,4 @@
-if yes?("Use rspec and rspec-rails?", :yellow)
+if y?("Use rspec and rspec-rails?")
   @use_rspec = true
 
   remove_file "test/"
@@ -11,7 +11,11 @@ if yes?("Use rspec and rspec-rails?", :yellow)
   gem 'rspec-rails',      '>= 2.0.0', :group => :test
   gem 'database_cleaner',             :group => :test
 
-  if yes?("Install mocha?", :yellow)
+  run "bundle install"
+
+  generate "rspec:install"
+
+  if y?("Install mocha?")
     gem 'mocha', :group => :test
 
     append_file "spec/spec_helper.rb" do
@@ -20,20 +24,17 @@ if yes?("Use rspec and rspec-rails?", :yellow)
     end
 
     gsub_file "spec/spec_helper.rb", /config\.mock_with :rspec/, "config.mock_with :mocha"
+    run "bundle install"
   end
 
   append_file "spec/spec_helper.rb" do
     "\nDatabaseCleaner.strategy = :truncation"
   end
 
-  run "bundle install"
-
-  generate "rspec:install"
-
   git :add => ".", :commit => "-m 'Use rspec for testing'"
 end
 
-if yes?("Install factory_girl?", :yellow)
+if y?("Install factory_girl?")
   gem 'factory_girl_rails', :group => :test
 
   inject_into_file "config/application.rb", :after => "config.generators do |generator|\n" do
@@ -45,17 +46,17 @@ if yes?("Install factory_girl?", :yellow)
   git :add => ".", :commit => "-m 'Use factory_girl'"
 end
 
-if yes?("Use autotest (with mac stuff?)")
+if y?("Use autotest (with mac stuff)?")
 
 end
 
-if yes?("Use Cucumber for acceptance testing (with capybara)?")
+if y?("Use Cucumber for acceptance testing?")
   gem 'database_cleaner', :group => :test
   gem 'cucumber',         :group => :test
   gem 'cucumber-rails',   :group => :test
   gem 'launchy',          :group => :test
 
-  if yes?("Use Capybara instead of Webrat?", :yellow)
+  if y?("Use Capybara instead of Webrat?")
     gem 'capybara', :group => :test
     @use_capybara = true
   else
@@ -67,12 +68,10 @@ if yes?("Use Cucumber for acceptance testing (with capybara)?")
   arguments = [].tap do |arguments|
     arguments << "--webrat"    if @use_capybara.nil?
     arguments << "--capybara"  if @use_capybara.present?
-    arguments << "--rspec"     if yes?("Use with rspec?", :yellow)
+    arguments << "--rspec"     if y?("Use with rspec?")
   end
 
   generate "cucumber:install #{arguments.join(" ")}"
-
-  get "#{@templates_path}/resources/cucumber.yml", "config/cucumber.yml", :force => true
 
   git :add => ".", :commit => "-m 'Use cucumber for acceptance testing'"
 end

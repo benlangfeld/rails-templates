@@ -1,4 +1,4 @@
-if yes?("Use HAML by default?")
+if y?("Use HAML by default?")
   gem 'haml'
   gem 'haml-rails'
 
@@ -21,38 +21,38 @@ if yes?("Use HAML by default?")
   @use_haml = true
 end
 
-if yes?("Use jQuery?")
+if y?("Use jQuery?(")
   gem "jquery-rails"
   run "bundle install"
   generate "jquery:install", "--ui"
   git :add => ".", :commit => "-m 'Use jQuery'"
 end
 
-if yes?("Use simple navigation?")
+if y?("Use simple navigation?")
 
 end
 
-if yes?("Use will_paginate?")
+if y?("Use will_paginate?")
 
 end
 
-if yes?("Use formtastic?")
+if y?("Use formtastic?")
   gem 'formtastic'
   run "bundle install"
   generate "formtastic:install"
   git :add => ".", :commit => "-m 'Use Formtastic'"
 end
 
-if yes?("Use simple_form?")
+if y?("Use simple_form?")
 
 end
 
-if yes?("Generate nifty layout?")
+if y?("Generate nifty layout?")
   generate "nifty:layout", "-f"
   git :add => ".", :commit => "-m 'Add nifty layout'"
 end
 
-if yes?("Generate web-app-theme layout?")
+if y?("Generate web-app-theme layout?")
   gem "web-app-theme", :git => "https://github.com/stevehodgkiss/web-app-theme.git"
   run "bundle install"
 
@@ -71,6 +71,6 @@ if yes?("Generate web-app-theme layout?")
   puts "You might need to tidy up web-app-theme a lot if you use other template functionality."
 end
 
-if yes?("Use Cappuccino?")
+if y?("Use Cappuccino?")
   apply "#{@templates_path}/capponrails.rb"
 end

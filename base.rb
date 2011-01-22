@@ -1,5 +1,5 @@
 def y?(s)
-  yes? "\n#{s} (y/n)"
+  yes? "\n#{s} (y/n)", :yellow
 end
 
 def maybe_update_file(options = {})
@@ -33,31 +33,30 @@ git :add => ".", :commit => "-m 'Base Rails app (with nifty generators)'"
 
 apply "#{@templates_path}/rvm.rb"
 apply "#{@templates_path}/database.rb"
+apply "#{@templates_path}/testing.rb"
+apply "#{@templates_path}/authorization.rb"
+apply "#{@templates_path}/views.rb"
 
-if yes?("Use has_scope?")
-
-end
-
-if yes?("Use simple_enum?")
-
-end
-
-if yes?("Use andand?")
+if y?("Use has_scope?")
 
 end
 
-if yes?("Annotate your models?")
+if y?("Use simple_enum?")
 
 end
 
-if yes?("Add a simple static home page?")
+if y?("Use andand?")
+
+end
+
+if y?("Annotate your models?")
+
+end
+
+if y?("Add a simple static home page?")
   apply "#{@templates_path}/static.rb"
 end
 
-apply "#{@templates_path}/views.rb"
-apply "#{@templates_path}/testing.rb"
-apply "#{@templates_path}/authorization.rb"
-
-if yes?("Host on GitHub?")
+if y?("Host on GitHub?")
   apply "#{@templates_path}/github.rb"
 end

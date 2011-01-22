@@ -1,4 +1,4 @@
-create_file "config/database.yml", :force => true do
+create_file "config/database.example.yml", :force => true do
 "setup: &setup
   adapter: #{options[:database]}
   encoding: utf8
@@ -25,12 +25,12 @@ cucumber:
   <<: *test"
 end
 
-unless Gem.available?(gem_for_database)
-  run "gem install #{gem_for_database} --no-rdoc --no-ri"
-else
-  say("Found #{gem_for_database}, skipping installation", :cyan)
-end
+run 'cp config/database.example.yml config/database.yml'
+
+run "bundle install"
 
 inject_into_file "config/application.rb", :after => "config.generators do |generator|\n" do
   (" " * 6) + "generator.orm :active_record\n"
 end
+
+git :add => ".", :commit => "-m 'Use correct database'"
