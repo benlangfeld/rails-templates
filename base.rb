@@ -38,19 +38,28 @@ apply "#{@templates_path}/authorization.rb"
 apply "#{@templates_path}/views.rb"
 
 if y?("Use has_scope?")
-
+  gem "has_scope"
+  run "bundle install"
+  git :add => ".", :commit => "-m 'Use has_scope'"
 end
 
 if y?("Use simple_enum?")
-
+  gem "simple_enum"
+  run "bundle install"
+  git :add => ".", :commit => "-m 'Use simple_enum'"
 end
 
 if y?("Use andand?")
-
+  gem "andand"
+  run "bundle install"
+  git :add => ".", :commit => "-m 'Use andand'"
 end
 
 if y?("Annotate your models?")
-
+  gem "annotate"
+  run "bundle install"
+  run "annotate"
+  git :add => ".", :commit => "-m 'Annotate models'"
 end
 
 if y?("Host on GitHub?")
