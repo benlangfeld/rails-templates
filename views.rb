@@ -17,6 +17,8 @@ end
 if yes?("Use formtastic?")
   gem 'formtastic'
   run "bundle install"
+  rake "formtastic:install"
+  git :add => ".", :commit => "-m 'Use Formtastic'"
 end
 
 if yes?("Use simple_form?")
@@ -48,5 +50,5 @@ if yes?("Generate web-app-theme layout?")
 end
 
 if yes?("Use Cappuccino?")
-  apply "https://github.com/benlangfeld/rails-templates/raw/master/capponrails.rb"
+  apply "#{templates_path}/capponrails.rb"
 end

@@ -1,7 +1,7 @@
 gem 'declarative_authorization', :git => "git://github.com/stffn/declarative_authorization.git"
 run "bundle install"
 
-run "curl -s -L https://github.com/benlangfeld/rails-templates/raw/master/resources/declarative_authorization/authorization_rules > config/authorization_rules.rb"
+run "curl -s -L #{templates_path}/resources/declarative_authorization/authorization_rules > config/authorization_rules.rb"
 
 maybe_update_file :file => "app/models/user.rb", :action => "update user model for role_symbols",
                   :unless_present => /role_symbols/, :before => "end", :content => (<<-CODE).gsub(/\A +| +\Z/, '')

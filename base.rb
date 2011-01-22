@@ -19,25 +19,20 @@ def maybe_update_file(options = {})
   end
 end
 
+templates_path = "https://github.com/benlangfeld/rails-templates/raw/master"
+
 gem "nifty-generators"
 
 run "bundle install"
 
 git :init
 
-run "echo 'TODO add readme content' > README"
-run "find . \\( -type d -empty \\) -and \\( -not -regex ./\\.git.* \\) -exec touch {}/.gitignore \\;"
-run "cp config/database.yml config/database.yml.example"
-run "rm public/images/rails.png"
-run "rm public/index.html"
-
-run "echo 'config/database.yml' >> .gitignore"
+apply "#{templates_path}/cleanup.rb"
 
 git :add => ".", :commit => "-m 'Base Rails app (with nifty generators)'"
 
-if yes?("Use mysql?")
-
-end
+apply "#{templates_path}/rvm.rb"
+apply "database.rb"
 
 if yes?("Use has_scope?")
 
@@ -56,14 +51,12 @@ if yes?("Annotate your models?")
 end
 
 if yes?("Add a simple static home page?")
-  apply "https://github.com/benlangfeld/rails-templates/raw/master/static.rb"
+  apply "#{templates_path}/static.rb"
 end
 
-apply "https://github.com/benlangfeld/rails-templates/raw/master/views.rb"
-
-apply "https://github.com/benlangfeld/rails-templates/raw/master/testing.rb"
-
-apply "https://github.com/benlangfeld/rails-templates/raw/master/authorization.rb"
+apply "#{templates_path}/views.rb"
+apply "#{templates_path}/testing.rb"
+apply "#{templates_path}/authorization.rb"
 
 # if yes?("Use ActiveRecord session store?")
 #   rake('db:sessions:create')
@@ -75,5 +68,5 @@ apply "https://github.com/benlangfeld/rails-templates/raw/master/authorization.r
 # end
 
 if yes?("Host on GitHub?")
-  apply "https://github.com/benlangfeld/rails-templates/raw/master/github.rb"
+  apply "#{templates_path}/github.rb"
 end
