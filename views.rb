@@ -1,9 +1,31 @@
 if yes?("Use HAML by default?")
+  gem 'haml'
+  gem 'haml-rails'
 
+  inject_into_file "config/application.rb", :after => "config.generators do |generator|\n" do
+    (" " * 6) + "generator.template_engine :haml\n"
+  end
+
+  create_file "config/initializers/haml.rb" do
+    <<-HAML
+    Haml::Template.options[:attr_wrapper] = '\"'
+    Haml::Template.options[:format] = :xhtml
+    Sass::Plugin.options[:style] = :expanded
+    HAML
+  end
+
+  run "bundle install"
+
+  git :add => ".", :commit => "-m 'Use HAML'"
+
+  @use_haml = true
 end
 
 if yes?("Use jQuery?")
-
+  gem "jquery-rails"
+  run "bundle install"
+  generate "jquery:install", "--ui"
+  git :add => ".", :commit => "-m 'Use jQuery'"
 end
 
 if yes?("Use simple navigation?")
@@ -17,7 +39,7 @@ end
 if yes?("Use formtastic?")
   gem 'formtastic'
   run "bundle install"
-  rake "formtastic:install"
+  generate "formtastic:install"
   git :add => ".", :commit => "-m 'Use Formtastic'"
 end
 
