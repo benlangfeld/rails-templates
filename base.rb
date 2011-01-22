@@ -56,7 +56,7 @@ if y?("Use andand?")
 end
 
 if y?("Annotate your models?")
-  gem "annotate"
+  gem "annotate-models"
   run "bundle install"
   run "annotate"
   git :add => ".", :commit => "-m 'Annotate models'"

@@ -29,11 +29,16 @@ if y?("Use jQuery?(")
 end
 
 if y?("Use simple navigation?")
-
+  gem "simple-navigation"
+  run "bundle install"
+  generate "navigation_config"
+  git :add => ".", :commit => "-m 'Use simple_navigation'"
 end
 
 if y?("Use will_paginate?")
-
+  gem "will_paginate", "~> 3.0.pre2"
+  run "bundle install"
+  git :add => ".", :commit => "-m 'Use will_paginate'"
 end
 
 if y?("Use formtastic?")
@@ -44,7 +49,10 @@ if y?("Use formtastic?")
 end
 
 if y?("Use simple_form?")
-
+  gem "simple_form"
+  run "bundle install"
+  generate "simple_form:install"
+  git :add => ".", :commit => "-m 'Use simple_form'"
 end
 
 if y?("Generate nifty layout?")
@@ -85,7 +93,7 @@ if y?("Use Cappuccino?")
 
   run "echo 'Cappuccino/Build/*' >> .gitignore"
 
-  git :add => "Cappuccino", :commit => "-m 'Added Cappuccino'"
+  git :add => ".", :commit => "-m 'Added Cappuccino'"
 end
 
 if y?("Add a simple static home page?")
