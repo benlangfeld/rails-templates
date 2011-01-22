@@ -21,6 +21,8 @@ end
 
 gem "nifty-generators"
 
+run "bundle install"
+
 git :init
 
 run "echo 'TODO add readme content' > README"
@@ -31,35 +33,37 @@ run "rm public/index.html"
 
 run "echo 'config/database.yml' >> .gitignore"
 
-git :add => ".", :commit => "-m 'Base Rails app'"
+git :add => ".", :commit => "-m 'Base Rails app (with nifty generators)'"
 
-run "bundle install"
+if yes?("Do you want to use mysql?")
 
-if yes?("Generate nifty layout?")
-  generate "nifty:layout", "-f"
-  git :add => ".", :commit => "-m 'Add nifty layout'"
 end
 
-if yes?("Generate web-app-theme layout?")
-  gem "web-app-theme", :git => "http://github.com/stevehodgkiss/web-app-theme.git"
-  run "bundle install"
+if yes?("Do you want to use has_scope?")
 
-  options = []
+end
 
-  theme = ask "Which theme would you like to use? (none for default) "
-  options += ["--theme=#{theme}"] unless theme == ''
+if yes?("Do you want to use simple_enum?")
 
-  app_name = ask "What is the name of the application?"
-  options += ["--app-name=#{app_name}"] unless app_name == ''
+end
 
-  generate "web_app_theme:theme", options.flatten
+if yes?("Do you want to use andand?")
 
-  git :add => ".", :commit => "-m 'Add web-app-theme layout'"
+end
+
+if yes?("Do you want to annotate your models?")
+
 end
 
 if yes?("Add a simple static home page?")
   apply "http://github.com/benlangfeld/rails-templates/raw/master/static.rb"
 end
+
+apply "http://github.com/benlangfeld/rails-templates/raw/master/views.rb"
+
+apply "http://github.com/benlangfeld/rails-templates/raw/master/testing.rb"
+
+apply "http://github.com/benlangfeld/rails-templates/raw/master/authorization.rb"
 
 # if yes?("Use ActiveRecord session store?")
 #   rake('db:sessions:create')
@@ -70,32 +74,6 @@ end
 #
 # end
 
-if yes?("Use formtastic?")
-  gem 'formtastic'
-  run "bundle install"
-end
-
-if yes?("Do you want to use RSpec for testing?")
-  gem "rspec-rails", ">= 2.0.0.beta.8"
-  gem "rspec", ">= 2.0.0.beta.8"
-  run "bundle install"
-  generate :rspec
-end
-
-if yes?("Do you want to use Cappuccino?")
-  apply "http://github.com/benlangfeld/rails-templates/raw/master/capponrails.rb"
-end
-
-if yes?("Use authlogic for simple authentication?")
-  apply "http://github.com/benlangfeld/rails-templates/raw/master/authlogic.rb"
-end
-
-if yes?("Use declarative_authorization for simple authorization?")
-  apply "http://github.com/benlangfeld/rails-templates/raw/master/declarative_authorization.rb"
-end
-
 if yes?("Host on GitHub?")
   apply "http://github.com/benlangfeld/rails-templates/raw/master/github.rb"
 end
-
-rake "db:migrate"
