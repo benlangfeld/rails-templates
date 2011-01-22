@@ -29,7 +29,7 @@ if yes?("Generate nifty layout?")
 end
 
 if yes?("Generate web-app-theme layout?")
-  gem "web-app-theme", :git => "http://github.com/stevehodgkiss/web-app-theme.git"
+  gem "web-app-theme", :git => "https://github.com/stevehodgkiss/web-app-theme.git"
   run "bundle install"
 
   options = []

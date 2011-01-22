@@ -56,14 +56,14 @@ if yes?("Do you want to annotate your models?")
 end
 
 if yes?("Add a simple static home page?")
-  apply "http://github.com/benlangfeld/rails-templates/raw/master/static.rb"
+  apply "https://github.com/benlangfeld/rails-templates/raw/master/static.rb"
 end
 
-apply "http://github.com/benlangfeld/rails-templates/raw/master/views.rb"
+apply "https://github.com/benlangfeld/rails-templates/raw/master/views.rb"
 
-apply "http://github.com/benlangfeld/rails-templates/raw/master/testing.rb"
+apply "https://github.com/benlangfeld/rails-templates/raw/master/testing.rb"
 
-apply "http://github.com/benlangfeld/rails-templates/raw/master/authorization.rb"
+apply "https://github.com/benlangfeld/rails-templates/raw/master/authorization.rb"
 
 # if yes?("Use ActiveRecord session store?")
 #   rake('db:sessions:create')
@@ -75,5 +75,5 @@ apply "http://github.com/benlangfeld/rails-templates/raw/master/authorization.rb
 # end
 
 if yes?("Host on GitHub?")
-  apply "http://github.com/benlangfeld/rails-templates/raw/master/github.rb"
+  apply "https://github.com/benlangfeld/rails-templates/raw/master/github.rb"
 end
