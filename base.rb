@@ -19,7 +19,7 @@ def maybe_update_file(options = {})
   end
 end
 
-templates_path = "https://github.com/benlangfeld/rails-templates/raw/master"
+@templates_path = "https://github.com/benlangfeld/rails-templates/raw/master"
 
 gem "nifty-generators"
 
@@ -27,12 +27,12 @@ run "bundle install"
 
 git :init
 
-apply "#{templates_path}/cleanup.rb"
+apply "#{@templates_path}/cleanup.rb"
 
 git :add => ".", :commit => "-m 'Base Rails app (with nifty generators)'"
 
-apply "#{templates_path}/rvm.rb"
-apply "#{templates_path}/database.rb"
+apply "#{@templates_path}/rvm.rb"
+apply "#{@templates_path}/database.rb"
 
 if yes?("Use has_scope?")
 
@@ -51,13 +51,13 @@ if yes?("Annotate your models?")
 end
 
 if yes?("Add a simple static home page?")
-  apply "#{templates_path}/static.rb"
+  apply "#{@templates_path}/static.rb"
 end
 
-apply "#{templates_path}/views.rb"
-apply "#{templates_path}/testing.rb"
-apply "#{templates_path}/authorization.rb"
+apply "#{@templates_path}/views.rb"
+apply "#{@templates_path}/testing.rb"
+apply "#{@templates_path}/authorization.rb"
 
 if yes?("Host on GitHub?")
-  apply "#{templates_path}/github.rb"
+  apply "#{@templates_path}/github.rb"
 end

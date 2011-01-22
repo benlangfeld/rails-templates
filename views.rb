@@ -72,5 +72,5 @@ if yes?("Generate web-app-theme layout?")
 end
 
 if yes?("Use Cappuccino?")
-  apply "#{templates_path}/capponrails.rb"
+  apply "#{@templates_path}/capponrails.rb"
 end

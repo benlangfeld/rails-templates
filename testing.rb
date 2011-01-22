@@ -72,7 +72,7 @@ if yes?("Use Cucumber for acceptance testing (with capybara)?")
 
   generate "cucumber:install #{arguments.join(" ")}"
 
-  get "#{templates_path}/resources/cucumber.yml", "config/cucumber.yml", :force => true
+  get "#{@templates_path}/resources/cucumber.yml", "config/cucumber.yml", :force => true
 
   git :add => ".", :commit => "-m 'Use cucumber for acceptance testing'"
 end
