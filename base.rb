@@ -32,7 +32,7 @@ apply "#{templates_path}/cleanup.rb"
 git :add => ".", :commit => "-m 'Base Rails app (with nifty generators)'"
 
 apply "#{templates_path}/rvm.rb"
-apply "database.rb"
+apply "#{templates_path}/database.rb"
 
 if yes?("Use has_scope?")
 
@@ -57,15 +57,6 @@ end
 apply "#{templates_path}/views.rb"
 apply "#{templates_path}/testing.rb"
 apply "#{templates_path}/authorization.rb"
-
-# if yes?("Use ActiveRecord session store?")
-#   rake('db:sessions:create')
-#   initializer 'session_store.rb', <<-FILE
-#     ActionController::Base.session = { :session_key => '_#{(1..6).map { |x| (65 + rand(26)).chr }.join}_session', :secret => '#{(1..40).map { |x| (65 + rand(26)).chr }.join}' }
-#     ActionController::Base.session_store = :active_record_store
-#   FILE
-#
-# end
 
 if yes?("Host on GitHub?")
   apply "#{templates_path}/github.rb"
