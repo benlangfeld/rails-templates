@@ -25,7 +25,7 @@ if y?("Use jQuery?(")
   gem "jquery-rails"
   run "bundle install"
   generate "jquery:install", "--ui"
-  git :add => ".", :commit => "-m 'Use jQuery'"
+  git :add => ".", :rm => "public/javascripts/controls.js public/javascripts/dragdrop.js public/javascripts/effects.js public/javascripts/prototype.js", :commit => "-m 'Use jQuery'"
 end
 
 if y?("Use simple navigation?")

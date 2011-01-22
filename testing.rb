@@ -35,7 +35,7 @@ if y?("Use rspec and rspec-rails?")
     "\n--tty"
   end
 
-  git :add => ".", :commit => "-m 'Use rspec for testing'"
+  git :add => ".", :rm => "test/*", :commit => "-m 'Use rspec for testing'"
 end
 
 if y?("Install factory_girl?")
