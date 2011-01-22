@@ -1,16 +1,16 @@
-if yes?("Do you want to use HAML by default?")
+if yes?("Use HAML by default?")
 
 end
 
-if yes?("Do you want to use jQuery?")
+if yes?("Use jQuery?")
 
 end
 
-if yes?("Do you want to use simple navigation?")
+if yes?("Use simple navigation?")
 
 end
 
-if yes?("Do you want to use will_paginate?")
+if yes?("Use will_paginate?")
 
 end
 
@@ -45,4 +45,8 @@ if yes?("Generate web-app-theme layout?")
   git :add => ".", :commit => "-m 'Add web-app-theme layout'"
 
   puts "You might need to tidy up web-app-theme a lot if you use other template functionality."
+end
+
+if yes?("Use Cappuccino?")
+  apply "https://github.com/benlangfeld/rails-templates/raw/master/capponrails.rb"
 end

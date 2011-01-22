@@ -1,4 +1,4 @@
-if yes?("Do you want to use a CIB based app?")
+if yes?("Use a CIB based app?")
   arguments = "-t NibApplication"
 else
   arguments = "-t Application"

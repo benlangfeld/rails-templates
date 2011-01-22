@@ -35,23 +35,23 @@ run "echo 'config/database.yml' >> .gitignore"
 
 git :add => ".", :commit => "-m 'Base Rails app (with nifty generators)'"
 
-if yes?("Do you want to use mysql?")
+if yes?("Use mysql?")
 
 end
 
-if yes?("Do you want to use has_scope?")
+if yes?("Use has_scope?")
 
 end
 
-if yes?("Do you want to use simple_enum?")
+if yes?("Use simple_enum?")
 
 end
 
-if yes?("Do you want to use andand?")
+if yes?("Use andand?")
 
 end
 
-if yes?("Do you want to annotate your models?")
+if yes?("Annotate your models?")
 
 end
 

@@ -1,15 +1,11 @@
-if yes?("Do you want to use Cappuccino?")
-  apply "https://github.com/benlangfeld/rails-templates/raw/master/capponrails.rb"
-end
-
-if yes?("Use declarative_authorization for simple authorization?")
+if yes?("Use declarative_authorization?")
   apply "https://github.com/benlangfeld/rails-templates/raw/master/declarative_authorization.rb"
 end
 
-if yes?("Do you want to use Cream (Devise, CanCan & Roles Generic) for authentication and authorization?")
+if yes?("Use Cream (Devise, CanCan & Roles Generic) for authentication and authorization?")
 
 end
 
-if yes?("Do you want to automatically protect model attributes?")
+if yes?("Automatically protect model attributes?")
 
 end
