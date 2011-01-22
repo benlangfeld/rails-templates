@@ -31,6 +31,10 @@ if y?("Use rspec and rspec-rails?")
     "\nDatabaseCleaner.strategy = :truncation"
   end
 
+  append_file ".rspec" do
+    "\n--tty"
+  end
+
   git :add => ".", :commit => "-m 'Use rspec for testing'"
 end
 
@@ -46,8 +50,11 @@ if y?("Install factory_girl?")
   git :add => ".", :commit => "-m 'Use factory_girl'"
 end
 
-if y?("Use autotest (with mac stuff)?")
-
+if y?("Use infinity_test?")
+  gem "ZenTest", :group => :test
+  gem "infinity_test", :group => :test
+  run "bundle install"
+  git :add => ".", :commit => "-m 'Use infinity_test'"
 end
 
 if y?("Use Cucumber for acceptance testing?")
