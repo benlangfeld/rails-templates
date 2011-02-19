@@ -63,6 +63,15 @@ if y?("Annotate your models?")
   git :add => ".", :commit => "-m 'Annotate models'"
 end
 
+if y?("Use Adhearsion?")
+  gem "adhearsion"
+  gem "rubigen"
+  gem "ahn-rails"
+  run "bundle install"
+  run "ahn create adhearsion"
+  git :add => ".", :commit => "-m 'Add an Adhearsion app'"
+end
+
 if y?("Host on GitHub?")
   apply "#{@templates_path}/github.rb"
 end
