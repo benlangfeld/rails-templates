@@ -21,15 +21,14 @@ end
 
 @templates_path = "https://github.com/benlangfeld/rails-templates/raw/master"
 
-gem "nifty-generators"
-
-apply "#{@templates_path}/rvm.rb"
-
-run "bundle install"
-
 git :init
 
+apply "#{@templates_path}/rvm.rb"
 apply "#{@templates_path}/cleanup.rb"
+
+gem "nifty-generators"
+
+run "bundle install"
 
 git :add => ".", :commit => "-m 'Base Rails app (with nifty generators)'"
 
