@@ -23,6 +23,8 @@ end
 
 gem "nifty-generators"
 
+apply "#{@templates_path}/rvm.rb"
+
 run "bundle install"
 
 git :init
@@ -31,7 +33,6 @@ apply "#{@templates_path}/cleanup.rb"
 
 git :add => ".", :commit => "-m 'Base Rails app (with nifty generators)'"
 
-apply "#{@templates_path}/rvm.rb"
 apply "#{@templates_path}/database.rb"
 apply "#{@templates_path}/testing.rb"
 apply "#{@templates_path}/authorization.rb"
