@@ -26,3 +26,4 @@ Copyright
 ---------
 
 Copyright (c) 2011 Ben Langfeld. MIT licence (see LICENSE for details).
+Some stuff shamefully stolen from Kevin Faustino at https://github.com/madebydna/rails-templater

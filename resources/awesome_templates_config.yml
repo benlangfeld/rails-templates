@@ -1,51 +1,46 @@
-# Testing stuff
+enabled_recipes:
+  - rspec
+  - mocha
+  - factory_girl
+  - infinity_test
+  - cucumber
+  # - nifty_layout
+  - web_app_theme
+  - haml
+  - jquery
+  - simple_navigation
+  - kaminari
+  - simple_form
+  - static
+  - has_scope
+  - simple_enum
+  - andand
+  - annotate_models
+  - auto_protect_model_attributes
+  # - cappuccino
+  # - adhearsion
+  # - heroku
+  # - cream
+  # - github
+
 rspec:
-  enabled: true
   mocha: true
 
-factory_girl: true
-infinity_test: true
-
 cucumber:
-  enabled: true
   backend: capybara
 
-# View stuff
-nifty_layout: false # Generate nifty layout?
-
 web_app_theme:
-  enabled: true # Generate web-app-theme layout?
-  theme: default # Which theme would you like to use?
-
-haml: true
-jquery: true
-simple_navigation: true
-kaminari: true
-simple_form: true
-static: true
+  theme: default
 
 cappuccino:
-  enabled: false
   cib_app: true
 
-# Misc stuff
-has_scope: true
-simple_enum: true
-andand: true
-annotate_models: true
-auto_protect_model_attributes: true
-adhearsion: false
-
-heroku: false
-
 cream:
-  enabled: false # Use Cream (Devise, CanCan & Roles Generic) for authentication and authorization?
   strategy: admin_flag
   roles:
     - 'guest'
     - 'admin'
 
 github:
-  enabled: false
   username: your_username
   repo_name: your_repo_name
