@@ -25,9 +25,9 @@ if @mocha
   bundle
 end
 
-append_file "spec/spec_helper.rb" { "\nDatabaseCleaner.strategy = :truncation" }
+append_file("spec/spec_helper.rb") { "\nDatabaseCleaner.strategy = :truncation" }
 
-append_file ".rspec" { "\n--tty" }
+append_file(".rspec") { "\n--tty" }
 
 git :add => ".", :rm => "test/*", :commit => "-m 'Use rspec for testing'"
 
