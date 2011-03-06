@@ -10,7 +10,7 @@ if y?("Use rspec and rspec-rails?")
   gem 'rspec-rails',      '>= 2.0.0', :group => :test
   gem 'database_cleaner',             :group => :test
 
-  run "bundle install"
+  run "bundle install --quiet"
 
   generate "rspec:install"
 
@@ -23,7 +23,7 @@ if y?("Use rspec and rspec-rails?")
     end
 
     gsub_file "spec/spec_helper.rb", /config\.mock_with :rspec/, "config.mock_with :mocha"
-    run "bundle install"
+    run "bundle install --quiet"
   end
 
   append_file "spec/spec_helper.rb" do
@@ -44,7 +44,7 @@ if y?("Install factory_girl?")
     (" " * 6) + "generator.fixture_replacement :factory_girl, :dir => '#{@use_rspec ? "spec/factories" : "test/factories"}'\n"
   end
 
-  run "bundle install"
+  run "bundle install --quiet"
 
   git :add => ".", :commit => "-m 'Use factory_girl'"
 end
@@ -52,7 +52,7 @@ end
 if y?("Use infinity_test?")
   gem "ZenTest", :group => :test
   gem "infinity_test", :group => :test
-  run "bundle install"
+  run "bundle install --quiet"
   git :add => ".", :commit => "-m 'Use infinity_test'"
 end
 
@@ -74,7 +74,7 @@ if y?("Use Cucumber for acceptance testing?")
     arguments << "--rspec"     if y?("Use with rspec?")
   end
 
-  run "bundle install"
+  run "bundle install --quiet"
 
   generate "cucumber:install #{arguments.join(" ")}"
 

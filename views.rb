@@ -14,7 +14,7 @@ if y?("Use HAML by default?")
     HAML
   end
 
-  run "bundle install"
+  run "bundle install --quiet"
 
   git :add => ".", :commit => "-m 'Use HAML'"
 
@@ -23,40 +23,40 @@ end
 
 if y?("Use jQuery?(")
   gem "jquery-rails"
-  run "bundle install"
+  run "bundle install --quiet"
   generate "jquery:install", "--ui"
   git :add => ".", :rm => "public/javascripts/controls.js public/javascripts/dragdrop.js public/javascripts/effects.js public/javascripts/prototype.js", :commit => "-m 'Use jQuery'"
 end
 
 if y?("Use simple navigation?")
   gem "simple-navigation"
-  run "bundle install"
+  run "bundle install --quiet"
   generate "navigation_config"
   git :add => ".", :commit => "-m 'Use simple_navigation'"
 end
 
 if y?("Use Kaminari for pagination?")
   gem "kaminari"
-  run "bundle install"
+  run "bundle install --quiet"
   git :add => ".", :commit => "-m 'Use Kaminari'"
 end
 
 if y?("Use will_paginate?")
   gem "will_paginate", "~> 3.0.pre2"
-  run "bundle install"
+  run "bundle install --quiet"
   git :add => ".", :commit => "-m 'Use will_paginate'"
 end
 
 if y?("Use formtastic?")
   gem 'formtastic'
-  run "bundle install"
+  run "bundle install --quiet"
   generate "formtastic:install"
   git :add => ".", :commit => "-m 'Use Formtastic'"
 end
 
 if y?("Use simple_form?")
   gem "simple_form"
-  run "bundle install"
+  run "bundle install --quiet"
   generate "simple_form:install"
   git :add => ".", :commit => "-m 'Use simple_form'"
 end
@@ -68,7 +68,7 @@ end
 
 if y?("Generate web-app-theme layout?")
   gem "web-app-theme", :git => "https://github.com/stevehodgkiss/web-app-theme.git"
-  run "bundle install"
+  run "bundle install --quiet"
 
   options = []
 

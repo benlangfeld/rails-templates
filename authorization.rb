@@ -1,6 +1,6 @@
 if y?("Use Cream (Devise, CanCan & Roles Generic) for authentication and authorization?")
   gem "cream"
-  run "bundle install"
+  run "bundle install --quiet"
   options = []
 
   strategy = ask "What role strategy should we use? (default is admin_flag)"

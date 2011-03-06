@@ -28,7 +28,7 @@ apply "#{@templates_path}/cleanup.rb"
 
 gem "nifty-generators"
 
-run "bundle install"
+run "bundle install --quiet"
 
 git :add => ".", :commit => "-m 'Base Rails app (with nifty generators)'"
 
@@ -43,25 +43,25 @@ apply "#{@templates_path}/views.rb"
 
 if y?("Use has_scope?")
   gem "has_scope"
-  run "bundle install"
+  run "bundle install --quiet"
   git :add => ".", :commit => "-m 'Use has_scope'"
 end
 
 if y?("Use simple_enum?")
   gem "simple_enum"
-  run "bundle install"
+  run "bundle install --quiet"
   git :add => ".", :commit => "-m 'Use simple_enum'"
 end
 
 if y?("Use andand?")
   gem "andand"
-  run "bundle install"
+  run "bundle install --quiet"
   git :add => ".", :commit => "-m 'Use andand'"
 end
 
 if y?("Annotate your models?")
   gem "annotate-models"
-  run "bundle install"
+  run "bundle install --quiet"
   run "annotate"
   git :add => ".", :commit => "-m 'Annotate models'"
 end
@@ -70,7 +70,7 @@ if y?("Use Adhearsion?")
   gem "adhearsion"
   gem "rubigen"
   gem "ahn-rails"
-  run "bundle install"
+  run "bundle install --quiet"
   run "ahn create adhearsion"
   git :add => ".", :commit => "-m 'Add an Adhearsion app'"
 end
