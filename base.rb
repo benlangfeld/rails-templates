@@ -32,6 +32,10 @@ run "bundle install"
 
 git :add => ".", :commit => "-m 'Base Rails app (with nifty generators)'"
 
+say "Setting up the staging environment"
+run "cp config/environments/production.rb config/environments/staging.rb"
+git :add => ".", :commit => "-m 'Add staging environment'"
+
 apply "#{@templates_path}/database.rb"
 apply "#{@templates_path}/testing.rb"
 apply "#{@templates_path}/authorization.rb"
