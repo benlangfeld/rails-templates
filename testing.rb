@@ -1,82 +1,60 @@
-if y?("Use rspec and rspec-rails?")
-  @use_rspec = true
+puts "Using rspec and rspec-rails..."
 
-  remove_file "test/"
+remove_file "test/"
 
-  inject_into_file "config/application.rb", :after => "config.generators do |generator|\n" do
-    (" " * 6) + "generator.test_framework :rspec, :views => false\n"
-  end
+inject_into_file "config/application.rb", :after => "config.generators do |generator|\n" do
+  (" " * 6) + "generator.test_framework :rspec, :views => false\n"
+end
 
-  gem 'rspec-rails',      '>= 2.0.0', :group => :test
-  gem 'database_cleaner',             :group => :test
+gem 'rspec-rails',      '>= 2.0.0', :group => :test
+gem 'database_cleaner',             :group => :test
 
-  run "bundle install --quiet"
+run "bundle install --quiet"
 
-  generate "rspec:install"
+generate "rspec:install"
 
-  if y?("Install mocha?")
-    gem 'mocha', :group => :test
-
-    append_file "spec/spec_helper.rb" do
-      "Mocha::Configuration.warn_when(:stubbing_non_existent_method)\n" +
-      "Mocha::Configuration.warn_when(:stubbing_non_public_method)"
-    end
-
-    gsub_file "spec/spec_helper.rb", /config\.mock_with :rspec/, "config.mock_with :mocha"
-    run "bundle install --quiet"
-  end
+if y?("Install mocha?")
+  gem 'mocha', :group => :test
 
   append_file "spec/spec_helper.rb" do
-    "\nDatabaseCleaner.strategy = :truncation"
+    "Mocha::Configuration.warn_when(:stubbing_non_existent_method)\n" +
+    "Mocha::Configuration.warn_when(:stubbing_non_public_method)"
   end
 
-  append_file ".rspec" do
-    "\n--tty"
-  end
-
-  git :add => ".", :rm => "test/*", :commit => "-m 'Use rspec for testing'"
-end
-
-if y?("Install factory_girl?")
-  gem 'factory_girl_rails', :group => :test
-
-  inject_into_file "config/application.rb", :after => "config.generators do |generator|\n" do
-    (" " * 6) + "generator.fixture_replacement :factory_girl, :dir => '#{@use_rspec ? "spec/factories" : "test/factories"}'\n"
-  end
-
+  gsub_file "spec/spec_helper.rb", /config\.mock_with :rspec/, "config.mock_with :mocha"
   run "bundle install --quiet"
-
-  git :add => ".", :commit => "-m 'Use factory_girl'"
 end
 
-if y?("Use infinity_test?")
-  gem "ZenTest", :group => :test
-  gem "infinity_test", :group => :test
-  run "bundle install --quiet"
-  git :add => ".", :commit => "-m 'Use infinity_test'"
+append_file "spec/spec_helper.rb" { "\nDatabaseCleaner.strategy = :truncation" }
+
+append_file ".rspec" { "\n--tty" }
+
+git :add => ".", :rm => "test/*", :commit => "-m 'Use rspec for testing'"
+
+puts "Installing factory_girl..."
+gem 'factory_girl_rails', :group => :test
+
+inject_into_file "config/application.rb", :after => "config.generators do |generator|\n" do
+  (" " * 6) + "generator.fixture_replacement :factory_girl, :dir => '#{@use_rspec ? "spec/factories" : "test/factories"}'\n"
 end
 
-if y?("Use Cucumber for acceptance testing?")
-  gem 'database_cleaner', :group => :test
-  gem 'cucumber-rails',   :group => :test
-  gem 'launchy',          :group => :test
+run "bundle install --quiet"
+git :add => ".", :commit => "-m 'Use factory_girl'"
 
-  if y?("Use Capybara instead of Webrat?")
-    gem 'capybara', :group => :test
-    @use_capybara = true
-  else
-    gem 'webrat', :group => :test
-  end
+puts "Using infinity_test..."
+gem "ZenTest", :group => :test
+gem "infinity_test", :group => :test
+run "bundle install --quiet"
+git :add => ".", :commit => "-m 'Use infinity_test'"
 
-  arguments = [].tap do |arguments|
-    arguments << "--webrat"    if @use_capybara.nil?
-    arguments << "--capybara"  if @use_capybara.present?
-    arguments << "--rspec"     if y?("Use with rspec?")
-  end
+puts "Using Cucumber for acceptance testing, with Capybara and RSpec"
+gem 'database_cleaner', :group => :test
+gem 'cucumber-rails',   :group => :test
+gem 'launchy',          :group => :test
+gem 'capybara',         :group => :test
 
-  run "bundle install --quiet"
+run "bundle install --quiet"
 
-  generate "cucumber:install #{arguments.join(" ")}"
+generate "cucumber:install", %w{--capybara --rspec}
 
-  git :add => ".", :commit => "-m 'Use cucumber for acceptance testing'"
-end
+git :add => ".", :commit => "-m 'Use cucumber for acceptance testing'"

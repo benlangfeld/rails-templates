@@ -14,7 +14,6 @@ if y?("Use Cream (Devise, CanCan & Roles Generic) for authentication and authori
   git :add => ".", :commit => "-m 'Use Cream (Devise, CanCan & Roles Generic) for authentication and authorization'"
 end
 
-if y?("Automatically protect model attributes?")
-  run "curl -s -L #{@templates_path}/resources/accessible_attributes.rb > config/initializers/accessible_attributes.rb"
-  git :add => ".", :commit => "-m 'Automatically protect model attributes'"
-end
+puts "Automatically protecting model attributes..."
+run "curl -s -L #{@templates_path}/resources/accessible_attributes.rb > config/initializers/accessible_attributes.rb"
+git :add => ".", :commit => "-m 'Automatically protect model attributes'"

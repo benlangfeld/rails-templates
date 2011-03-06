@@ -41,30 +41,26 @@ apply "#{@templates_path}/testing.rb"
 apply "#{@templates_path}/authorization.rb"
 apply "#{@templates_path}/views.rb"
 
-if y?("Use has_scope?")
-  gem "has_scope"
-  run "bundle install --quiet"
-  git :add => ".", :commit => "-m 'Use has_scope'"
-end
+puts "Using has_scope..."
+gem "has_scope"
+run "bundle install --quiet"
+git :add => ".", :commit => "-m 'Use has_scope'"
 
-if y?("Use simple_enum?")
-  gem "simple_enum"
-  run "bundle install --quiet"
-  git :add => ".", :commit => "-m 'Use simple_enum'"
-end
+puts "Using simple_enum..."
+gem "simple_enum"
+run "bundle install --quiet"
+git :add => ".", :commit => "-m 'Use simple_enum'"
 
-if y?("Use andand?")
-  gem "andand"
-  run "bundle install --quiet"
-  git :add => ".", :commit => "-m 'Use andand'"
-end
+puts "Using andand..."
+gem "andand"
+run "bundle install --quiet"
+git :add => ".", :commit => "-m 'Use andand'"
 
-if y?("Annotate your models?")
-  gem "annotate-models", :group => :development
-  run "bundle install --quiet"
-  run "annotate"
-  git :add => ".", :commit => "-m 'Annotate models'"
-end
+puts "Annotating models..."
+gem "annotate-models", :group => :development
+run "bundle install --quiet"
+run "annotate" # FIXME: reload shell first
+git :add => ".", :commit => "-m 'Annotate models'"
 
 if y?("Use Adhearsion?")
   gem "adhearsion"
