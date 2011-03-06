@@ -1,6 +1,6 @@
 if @cream
   gem "cream"
-  run "bundle install --quiet"
+  bundle
 
   options = []
   options << "--roles #{@cream_roles}" if @cream_roles.present?

@@ -19,6 +19,11 @@ def maybe_update_file(options = {})
   end
 end
 
+def bundle
+  puts "Running bundle install..."
+  run "bundle install --quiet"
+end
+
 @templates_path = "https://github.com/benlangfeld/rails-templates/raw/master"
 
 @nifty_layout = y? "Generate nifty layout?"
@@ -47,7 +52,7 @@ apply "#{@templates_path}/cleanup.rb"
 
 gem "nifty-generators", :group => :development
 
-run "bundle install --quiet"
+bundle
 
 git :add => ".", :commit => "-m 'Base Rails app (with nifty generators)'"
 
@@ -62,29 +67,29 @@ apply "#{@templates_path}/views.rb"
 
 puts "Using has_scope..."
 gem "has_scope"
-run "bundle install --quiet"
+bundle
 git :add => ".", :commit => "-m 'Use has_scope'"
 
 puts "Using simple_enum..."
 gem "simple_enum"
-run "bundle install --quiet"
+bundle
 git :add => ".", :commit => "-m 'Use simple_enum'"
 
 puts "Using andand..."
 gem "andand"
-run "bundle install --quiet"
+bundle
 git :add => ".", :commit => "-m 'Use andand'"
 
 puts "Annotating models..."
 gem "annotate-models", :group => :development
-run "bundle install --quiet"
+bundle
 run "annotate" # FIXME: reload shell first
 git :add => ".", :commit => "-m 'Annotate models'"
 
 if @adhearsion
   gem "adhearsion"
   gem "ahn-rails"
-  run "bundle install --quiet"
-  run "ahn create adhearsion"
+  bundle
+  run "ahn create adhearsion" # FIXME: reload shell first
   git :add => ".", :commit => "-m 'Add an Adhearsion app'"
 end

@@ -14,29 +14,29 @@ create_file "config/initializers/haml.rb" do
   HAML
 end
 
-run "bundle install --quiet"
+bundle
 git :add => ".", :commit => "-m 'Use HAML'"
 
 puts "Using jQuery..."
 gem "jquery-rails"
-run "bundle install --quiet"
+bundle
 generate "jquery:install", "--ui"
 git :add => ".", :rm => "public/javascripts/controls.js public/javascripts/dragdrop.js public/javascripts/effects.js public/javascripts/prototype.js", :commit => "-m 'Use jQuery'"
 
 puts "Using simple navigation..."
 gem "simple-navigation"
-run "bundle install --quiet"
+bundle
 generate "navigation_config"
 git :add => ".", :commit => "-m 'Use simple_navigation'"
 
 puts "Using Kaminari for pagination..."
 gem "kaminari"
-run "bundle install --quiet"
+bundle
 git :add => ".", :commit => "-m 'Use Kaminari'"
 
 puts "Using simple_form..."
 gem "simple_form"
-run "bundle install --quiet"
+bundle
 generate "simple_form:install"
 git :add => ".", :commit => "-m 'Use simple_form'"
 
@@ -47,7 +47,7 @@ end
 
 if @web_app_theme
   gem "web-app-theme", :git => "https://github.com/stevehodgkiss/web-app-theme.git", :group => :development
-  run "bundle install --quiet"
+  bundle
 
   options = %w{--engine=haml}
   options << "--app-name='#{app_name}'"

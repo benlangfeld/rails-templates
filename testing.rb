@@ -9,7 +9,7 @@ end
 gem 'rspec-rails',      '>= 2.0.0', :group => :test
 gem 'database_cleaner',             :group => :test
 
-run "bundle install --quiet"
+bundle
 
 generate "rspec:install"
 
@@ -22,7 +22,7 @@ if @mocha
   end
 
   gsub_file "spec/spec_helper.rb", /config\.mock_with :rspec/, "config.mock_with :mocha"
-  run "bundle install --quiet"
+  bundle
 end
 
 append_file "spec/spec_helper.rb" { "\nDatabaseCleaner.strategy = :truncation" }
@@ -38,13 +38,13 @@ inject_into_file "config/application.rb", :after => "config.generators do |gener
   (" " * 6) + "generator.fixture_replacement :factory_girl, :dir => '#{@use_rspec ? "spec/factories" : "test/factories"}'\n"
 end
 
-run "bundle install --quiet"
+bundle
 git :add => ".", :commit => "-m 'Use factory_girl'"
 
 puts "Using infinity_test..."
 gem "ZenTest", :group => :test
 gem "infinity_test", :group => :test
-run "bundle install --quiet"
+bundle
 git :add => ".", :commit => "-m 'Use infinity_test'"
 
 puts "Using Cucumber for acceptance testing, with Capybara and RSpec"
@@ -53,7 +53,7 @@ gem 'cucumber-rails',   :group => :test
 gem 'launchy',          :group => :test
 gem 'capybara',         :group => :test
 
-run "bundle install --quiet"
+bundle
 
 generate "cucumber:install", %w{--capybara --rspec}
 
