@@ -1,3 +1,5 @@
+require 'yaml'
+
 def y?(s)
   yes? "\n#{s} (y/n)", :yellow
 end
