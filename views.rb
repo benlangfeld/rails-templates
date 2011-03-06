@@ -1,7 +1,4 @@
 if SETTINGS['haml']
-  gem 'haml'
-  gem 'haml-rails'
-
   inject_into_file "config/application.rb", :after => "config.generators do |generator|\n" do
     (" " * 6) + "generator.template_engine :haml\n"
   end
@@ -14,33 +11,20 @@ if SETTINGS['haml']
     HAML
   end
 
-  bundle
   commit_all 'Use HAML'
 end
 
 if SETTINGS['jquery']
-  gem "jquery-rails"
-  bundle
   generate "jquery:install", "--ui"
   git :add => ".", :rm => "public/javascripts/controls.js public/javascripts/dragdrop.js public/javascripts/effects.js public/javascripts/prototype.js", :commit => "-m 'Use jQuery'"
 end
 
 if SETTINGS['simple_navigation']
-  gem "simple-navigation"
-  bundle
   generate "navigation_config"
   commit_all 'Use simple_navigation'
 end
 
-if SETTINGS['kaminari']
-  gem "kaminari"
-  bundle
-  commit_all 'Use Kaminari'
-end
-
 if SETTINGS['simple_form']
-  gem "simple_form"
-  bundle
   generate "simple_form:install"
   commit_all 'Use simple_form'
 end
@@ -51,9 +35,6 @@ if SETTINGS['nifty_layout']
 end
 
 if SETTINGS['web_app_theme']['enabled']
-  gem "web-app-theme", :git => "https://github.com/stevehodgkiss/web-app-theme.git", :group => :development
-  bundle
-
   options = []
   options << "--engine=haml" if SETTINGS['haml']
   options << "--app-name='#{app_name}'"

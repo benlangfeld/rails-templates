@@ -1,7 +1,4 @@
 if SETTINGS['cream']['enabled']
-  gem "cream"
-  bundle
-
   options = []
   options << "--roles #{SETTINGS['cream']['roles'].join ' '}" unless SETTINGS['cream']['roles'].nil? || SETTINGS['cream']['roles'].empty?
   options << "--strategy #{SETTINGS['cream']['strategy']}"
