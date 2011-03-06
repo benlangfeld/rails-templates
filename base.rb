@@ -29,7 +29,6 @@ end
 @nifty_layout = y? "Generate nifty layout?"
 @web_app_theme = y? "Generate web-app-theme layout?"
 @web_app_theme_theme = ask("Which theme would you like to use? (none for default) ") if @web_app_theme
-@mocha = y? "Install mocha?"
 @cream = y? "Use Cream (Devise, CanCan & Roles Generic) for authentication and authorization?"
 if @cream
   @cream_strategy = ask "What role strategy should we use? (default is admin_flag)"
