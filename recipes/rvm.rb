@@ -34,7 +34,7 @@ if rvm list strings | grep -q "${ruby_string}" ; then
     && -s "${rvm_path:-$HOME/.rvm}/environments/${ruby_string}@${gemset_name}" ]] ; then
     \. "${rvm_path:-$HOME/.rvm}/environments/${ruby_string}@${gemset_name}"
   else
-    rvm --create  "${ruby_string}@${gemset_name}"
+    rvm --create "${ruby_string}@${gemset_name}"
   fi
 
   (
@@ -44,7 +44,7 @@ if rvm list strings | grep -q "${ruby_string}" ; then
     fi
 
     # Bundle while redcing excess noise.
-    bundle | grep -v 'Using' | grep -v 'complete' | sed '/^$/d'
+    bundle install --quiet
   )&
 
 else
