@@ -25,7 +25,7 @@ cucumber:
   <<: *test"
 end
 
-run 'cp config/database.example.yml config/database.yml'
+copy_file 'config/database.example.yml', 'config/database.yml'
 
 inject_into_file "config/application.rb", :after => "config.generators do |generator|\n" do
   (" " * 6) + "generator.orm :active_record\n"
