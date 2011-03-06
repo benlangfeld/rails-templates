@@ -28,7 +28,7 @@ end
 TEMPLATES_PATH = "https://github.com/benlangfeld/rails-templates/raw/master"
 
 CONFIG_FILE = File.join 'config', 'awesome_rails_config.yml'
-run "curl -s -L #{TEMPLATES_PATH}/resources/awesome_templates_config.yml > #{CONFIG_FILE}"
+get "#{TEMPLATES_PATH}/resources/awesome_templates_config.yml", "#{CONFIG_FILE}"
 run "#{ENV['EDITOR']} #{CONFIG_FILE}"
 SETTINGS = File.exists?(CONFIG_FILE) ? YAML.load_file(CONFIG_FILE) : {}
 

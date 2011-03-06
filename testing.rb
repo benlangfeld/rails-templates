@@ -39,7 +39,7 @@ if SETTINGS['cucumber']['enabled']
 
   generate "cucumber:install", options
 
-  run "curl -s -L #{TEMPLATES_PATH}/resources/factory_girl_steps.rb > features/step_definitions/factory_girl_steps.rb" if SETTINGS['factory_girl']
+  get "#{TEMPLATES_PATH}/resources/factory_girl_steps.rb", "features/step_definitions/factory_girl_steps.rb" if SETTINGS['factory_girl']
 
   commit_all 'Use cucumber for acceptance testing'
 end

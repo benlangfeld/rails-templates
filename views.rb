@@ -57,9 +57,9 @@ if SETTINGS['cappuccino']['enabled']
 end
 
 if SETTINGS['static']
-  run "curl -s -L #{TEMPLATES_PATH}/resources/static/static_controller.rb > app/controllers/static_controller.rb"
+  get "#{TEMPLATES_PATH}/resources/static/static_controller.rb", "app/controllers/static_controller.rb"
   run "mkdir app/views/static"
-  run "curl -s -L #{TEMPLATES_PATH}/resources/static/home.html.erb > app/views/static/home.html.erb"
+  get "#{TEMPLATES_PATH}/resources/static/home.html.erb", "app/views/static/home.html.erb"
 
   route "root :to => 'static#home'"
 

@@ -8,6 +8,6 @@ if SETTINGS['cream']['enabled']
 end
 
 if SETTINGS['auto_protect_model_attributes']
-  run "curl -s -L #{TEMPLATES_PATH}/resources/accessible_attributes.rb > config/initializers/accessible_attributes.rb"
+  get "#{TEMPLATES_PATH}/resources/accessible_attributes.rb", "config/initializers/accessible_attributes.rb"
   commit_all 'Automatically protect model attributes'
 end
