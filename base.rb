@@ -2,7 +2,7 @@ require 'yaml'
 
 module Rails
   module Generators
-    module Actions
+    class Actions
 
       attr_accessor :stategies
       attr_reader :template_options
