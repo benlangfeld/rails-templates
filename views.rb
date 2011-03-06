@@ -67,7 +67,7 @@ if y?("Generate nifty layout?")
 end
 
 if y?("Generate web-app-theme layout?")
-  gem "web-app-theme", :git => "https://github.com/stevehodgkiss/web-app-theme.git"
+  gem "web-app-theme", :git => "https://github.com/stevehodgkiss/web-app-theme.git", :group => :development
   run "bundle install --quiet"
 
   options = []

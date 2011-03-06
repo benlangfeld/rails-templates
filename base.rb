@@ -26,7 +26,7 @@ git :init
 apply "#{@templates_path}/rvm.rb"
 apply "#{@templates_path}/cleanup.rb"
 
-gem "nifty-generators"
+gem "nifty-generators", :group => :development
 
 run "bundle install --quiet"
 
@@ -60,7 +60,7 @@ if y?("Use andand?")
 end
 
 if y?("Annotate your models?")
-  gem "annotate-models"
+  gem "annotate-models", :group => :development
   run "bundle install --quiet"
   run "annotate"
   git :add => ".", :commit => "-m 'Annotate models'"
