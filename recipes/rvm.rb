@@ -56,9 +56,7 @@ fi
 END
 end
 
-run "rvm rvmrc trust"
-run "rvm use 1.9.2@#{app_name} --create"
-run "rvm 1.9.2@#{app_name}"
-run "rvm gemset load #{app_name}"
+@env = RVM::Environment.new 'ruby-1.9.2'
 
-RVM.gemset_use! app_name
+@env.gemset_create app_name
+@env.gemset_use! app_name
