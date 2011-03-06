@@ -1,14 +1,12 @@
-if y?("Use Cream (Devise, CanCan & Roles Generic) for authentication and authorization?")
+if @cream
   gem "cream"
   run "bundle install --quiet"
+
   options = []
+  options << "--roles #{@cream_roles}" if @cream_roles.present?
 
-  strategy = ask "What role strategy should we use? (default is admin_flag)"
-  strategy = "admin_flag" if strategy.empty?
-  options << "--strategy #{strategy}"
-
-  roles = ask "What roles should we use (separate by spaces)? (defaults :guest and :admin)"
-  options << "--roles #{roles}" if roles.present?
+  @cream_strategy = "admin_flag" if @cream_strategy.empty?
+  options << "--strategy #{@cream_strategy}"
 
   generate "cream:full_config", options
   git :add => ".", :commit => "-m 'Use Cream (Devise, CanCan & Roles Generic) for authentication and authorization'"

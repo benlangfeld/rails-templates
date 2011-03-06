@@ -13,7 +13,7 @@ run "bundle install --quiet"
 
 generate "rspec:install"
 
-if y?("Install mocha?")
+if @mocha
   gem 'mocha', :group => :test
 
   append_file "spec/spec_helper.rb" do

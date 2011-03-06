@@ -40,43 +40,31 @@ run "bundle install --quiet"
 generate "simple_form:install"
 git :add => ".", :commit => "-m 'Use simple_form'"
 
-if y?("Generate nifty layout?")
+if @nifty_layout
   generate "nifty:layout", "-f", "--haml"
   git :add => ".", :commit => "-m 'Add nifty layout'"
 end
 
-if y?("Generate web-app-theme layout?")
+if @web_app_theme
   gem "web-app-theme", :git => "https://github.com/stevehodgkiss/web-app-theme.git", :group => :development
   run "bundle install --quiet"
 
-  options = []
+  options = %w{--engine=haml}
+  options << "--app-name='#{app_name}'"
+  options << "--theme=#{@web_app_theme_theme}" unless @web_app_theme_theme == ''
 
-  theme = ask "Which theme would you like to use? (none for default) "
-  options << "--theme=#{theme}" unless theme == ''
-
-  app_name = ask "What is the name of the application?"
-  options << "--app-name='#{app_name}'" unless app_name == ''
-
-  options << "--engine=haml"
-
-  generate "web_app_theme:theme", options.flatten
+  generate "web_app_theme:theme", options
 
   git :add => ".", :commit => "-m 'Add web-app-theme layout'"
 
   puts "You might need to tidy up web-app-theme a lot if you use other template functionality."
 end
 
-if y?("Use Cappuccino?")
-  if y?("Use a CIB based app?")
-    arguments = "-t NibApplication"
-  else
-    arguments = "-t Application"
-  end
+if @cappuccino
+  cap_template = @cib_app ? "NibApplication" : "Application"
 
-  appName = ask "What's the name of the app?"
-
-  run "capp gen #{appName} #{arguments}"
-  run "mv #{appName} Cappuccino"
+  run "capp gen #{app_name} -t #{capp_template}"
+  run "mv #{app_name} Cappuccino"
 
   run "echo 'Cappuccino/Build/*' >> .gitignore"
 

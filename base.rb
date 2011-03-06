@@ -21,6 +21,25 @@ end
 
 @templates_path = "https://github.com/benlangfeld/rails-templates/raw/master"
 
+@nifty_layout = y? "Generate nifty layout?"
+@web_app_theme = y? "Generate web-app-theme layout?"
+@web_app_theme_theme = ask("Which theme would you like to use? (none for default) ") if @web_app_theme
+@mocha = y? "Install mocha?"
+@cream = y? "Use Cream (Devise, CanCan & Roles Generic) for authentication and authorization?"
+if @cream
+  @cream_strategy = ask "What role strategy should we use? (default is admin_flag)"
+  @cream_roles = ask "What roles should we use (separate by spaces)? (defaults :guest and :admin)"
+end
+@cappuccino = y? "Use Cappuccino?"
+@cib_app = y?("Use a CIB based app?") if @cappuccino
+@adhearsion = y? "Use Adhearsion?"
+
+if y?("Store on GitHub?")
+  github_username = ask "What's your github username?"
+  github_repo_name = ask "What's the github repo name?"
+  git :remote => "add github git@github.com:#{github_username}/#{github_repo_name}.git", :push => "github master"
+end
+
 git :init
 
 apply "#{@templates_path}/rvm.rb"
@@ -62,14 +81,10 @@ run "bundle install --quiet"
 run "annotate" # FIXME: reload shell first
 git :add => ".", :commit => "-m 'Annotate models'"
 
-if y?("Use Adhearsion?")
+if @adhearsion
   gem "adhearsion"
   gem "ahn-rails"
   run "bundle install --quiet"
   run "ahn create adhearsion"
   git :add => ".", :commit => "-m 'Add an Adhearsion app'"
-end
-
-if y?("Host on GitHub?")
-  apply "#{@templates_path}/github.rb"
 end
