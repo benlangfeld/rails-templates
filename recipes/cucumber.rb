@@ -7,11 +7,11 @@ gem @cuke_backend,      :group => :test
 
 @stategies << lambda do
   options = ["--#{@cuke_backend}"]
-  options << "--rspec" if SETTINGS[:enabled_recipes].include? 'rspec'
+  options << "--rspec" if SETTINGS['enabled_recipes'].include? 'rspec'
 
   generate "cucumber:install", options
 
-  get "#{TEMPLATES_PATH}/resources/factory_girl_steps.rb", "features/step_definitions/factory_girl_steps.rb" if SETTINGS[:enabled_recipes].include? 'factory_girl'
+  get "#{TEMPLATES_PATH}/resources/factory_girl_steps.rb", "features/step_definitions/factory_girl_steps.rb" if SETTINGS['enabled_recipes'].include? 'factory_girl'
 
   commit_all 'Use cucumber for acceptance testing'
 end

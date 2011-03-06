@@ -38,9 +38,9 @@ commit_all 'Base Rails app'
 
 gem "nifty-generators", :group => :development
 
-SETTINGS[:enabled_recipes].each { |recipe| apply recipe(recipe) }
+SETTINGS['enabled_recipes'].each { |recipe| apply recipe(recipe) }
 
-inside app_name { run "bundle install --quiet" }
+run "bundle install --quiet"
 
 commit_all 'Include a bunch of gems'
 

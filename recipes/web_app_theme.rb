@@ -2,7 +2,7 @@ gem "web-app-theme", :git => "https://github.com/stevehodgkiss/web-app-theme.git
 
 @stategies << lambda do
   options = []
-  options << "--engine=haml" if SETTINGS[:enabled_recipes].include? 'haml'
+  options << "--engine=haml" if SETTINGS['enabled_recipes'].include? 'haml'
   options << "--app-name='#{app_name}'"
   options << "--theme=#{SETTINGS['web_app_theme']['theme']}" unless SETTINGS['web_app_theme']['theme'] == ''
 
