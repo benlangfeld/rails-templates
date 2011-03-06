@@ -28,31 +28,21 @@ def commit_all(message = '')
   git :add => ".", :commit => "-m '#{message}'"
 end
 
-@templates_path = "https://github.com/benlangfeld/rails-templates/raw/master"
+TEMPLATES_PATH = "https://github.com/benlangfeld/rails-templates/raw/master"
 
-@nifty_layout = y? "Generate nifty layout?"
-@web_app_theme = y? "Generate web-app-theme layout?"
-@web_app_theme_theme = ask("Which theme would you like to use? (none for default) ") if @web_app_theme
-@cream = y? "Use Cream (Devise, CanCan & Roles Generic) for authentication and authorization?"
-if @cream
-  @cream_strategy = ask "What role strategy should we use? (default is admin_flag)"
-  @cream_roles = ask "What roles should we use (separate by spaces)? (defaults :guest and :admin)"
-end
-@cappuccino = y? "Use Cappuccino?"
-@cib_app = y?("Use a CIB based app?") if @cappuccino
-@adhearsion = y? "Use Adhearsion?"
-@heroku = y? "Host on Heroku?"
+CONFIG_FILE = File.join 'config', 'awesome_rails_config.yml'
+run "curl -s -L #{TEMPLATES_PATH}/resources/awesome_rails_config.yml > #{CONFIG_FILE}"
+run ENV['EDITOR'], CONFIG_FILE
+SETTINGS = File.exists?(CONFIG_FILE) ? YAML.load_file(CONFIG_FILE) : {}
 
-if y?("Store on GitHub?")
-  github_username = ask "What's your github username?"
-  github_repo_name = ask "What's the github repo name?"
-  git :remote => "add github git@github.com:#{github_username}/#{github_repo_name}.git", :push => "github master"
+if SETTINGS['github']['enabled']
+  git :remote => "add github git@github.com:#{SETTINGS['github']['username']}/#{SETTINGS['github']['repo_name']}.git", :push => "github master"
 end
 
 git :init
 
-apply "#{@templates_path}/rvm.rb"
-apply "#{@templates_path}/cleanup.rb"
+apply "#{TEMPLATES_PATH}/rvm.rb"
+apply "#{TEMPLATES_PATH}/cleanup.rb"
 
 gem "nifty-generators", :group => :development
 
@@ -64,33 +54,37 @@ say "Setting up the staging environment"
 run "cp config/environments/production.rb config/environments/staging.rb"
 commit_all 'Add staging environment'
 
-apply "#{@templates_path}/database.rb"
-apply "#{@templates_path}/testing.rb"
-apply "#{@templates_path}/authorization.rb"
-apply "#{@templates_path}/views.rb"
+apply "#{TEMPLATES_PATH}/database.rb"
+apply "#{TEMPLATES_PATH}/testing.rb"
+apply "#{TEMPLATES_PATH}/authorization.rb"
+apply "#{TEMPLATES_PATH}/views.rb"
 
-puts "Using has_scope..."
-gem "has_scope"
-bundle
-commit_all 'Use has_scope'
+if SETTINGS['has_scope']
+  gem "has_scope"
+  bundle
+  commit_all 'Use has_scope'
+end
 
-puts "Using simple_enum..."
-gem "simple_enum"
-bundle
-commit_all 'Use simple_enum'
+if SETTINGS['simple_enum']
+  gem "simple_enum"
+  bundle
+  commit_all 'Use simple_enum'
+end
 
-puts "Using andand..."
-gem "andand"
-bundle
-commit_all 'Use andand'
+if SETTINGS['andand']
+  gem "andand"
+  bundle
+  commit_all 'Use andand'
+end
 
-puts "Annotating models..."
-gem "annotate-models", :group => :development
-bundle
-run "annotate" # FIXME: reload shell first
-commit_all 'Annotate models'
+if SETTINGS['annotate_models']
+  gem "annotate-models", :group => :development
+  bundle
+  run "annotate" # FIXME: reload shell first
+  commit_all 'Annotate models'
+end
 
-if @adhearsion
+if SETTINGS['adhearsion']
   gem "adhearsion"
   gem "ahn-rails"
   bundle
@@ -98,6 +92,6 @@ if @adhearsion
   commit_all 'Add an Adhearsion app'
 end
 
-if @heroku
-  apply "#{@templates_path}/heroku.rb"
+if SETTINGS['heroku']
+  apply "#{TEMPLATES_PATH}/heroku.rb"
 end

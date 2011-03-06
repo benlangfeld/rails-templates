@@ -1,0 +1,50 @@
+# Testing stuff
+rspec:
+  enabled: true
+  mocha: true
+
+factory_girl: true
+infinity_test: true
+
+cucumber:
+  enabled: true
+  backend: capybara
+
+# View stuff
+nifty_layout: false # Generate nifty layout?
+
+web_app_theme:
+  enabled: true # Generate web-app-theme layout?
+  theme: default # Which theme would you like to use?
+
+haml: true
+jquery: true
+simple_navigation: true
+kaminari: true
+simple_form: true
+static: true
+
+cappuccino:
+  enabled: true
+  cib_app: true
+
+# Misc stuff
+has_scope: true
+simple_enum: true
+andand: true
+annotate_models: true
+adhearsion: false
+heroku: false
+auto_protect_model_attributes: true
+
+cream:
+  enabled: false # Use Cream (Devise, CanCan & Roles Generic) for authentication and authorization?
+  strategy: admin_flag
+  roles:
+    - 'guest'
+    - 'admin'
+
+github:
+  enabled: false
+  username: your_username
+  repo_name: your_repo_name
