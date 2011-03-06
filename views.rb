@@ -78,6 +78,8 @@ if y?("Generate web-app-theme layout?")
   app_name = ask "What is the name of the application?"
   options << "--app-name='#{app_name}'" unless app_name == ''
 
+  options << "--engine=haml" if @use_haml
+
   generate "web_app_theme:theme", options.flatten
 
   git :add => ".", :commit => "-m 'Add web-app-theme layout'"
