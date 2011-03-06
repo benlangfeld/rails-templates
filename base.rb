@@ -68,7 +68,6 @@ end
 
 if y?("Use Adhearsion?")
   gem "adhearsion"
-  gem "rubigen"
   gem "ahn-rails"
   run "bundle install --quiet"
   run "ahn create adhearsion"
