@@ -41,6 +41,7 @@ end
 @cappuccino = y? "Use Cappuccino?"
 @cib_app = y?("Use a CIB based app?") if @cappuccino
 @adhearsion = y? "Use Adhearsion?"
+@heroku = y? "Host on Heroku?"
 
 if y?("Store on GitHub?")
   github_username = ask "What's your github username?"
@@ -95,4 +96,8 @@ if @adhearsion
   bundle
   run "ahn create adhearsion" # FIXME: reload shell first
   commit_all 'Add an Adhearsion app'
+end
+
+if @heroku
+  apply "#{@templates_path}/heroku.rb"
 end
