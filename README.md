@@ -1,6 +1,11 @@
 Ben's Rails Templates
 =====================
 
+Requirements
+------------
+* Rails 3
+* Bundler
+
 Usage
 -----
     rails new yourappname -m 'https://github.com/benlangfeld/rails-templates/raw/master/base.rb'
