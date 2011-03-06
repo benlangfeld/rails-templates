@@ -68,13 +68,13 @@ if y?("Use Cucumber for acceptance testing?")
     gem 'webrat', :group => :test
   end
 
-  run "bundle install"
-
   arguments = [].tap do |arguments|
     arguments << "--webrat"    if @use_capybara.nil?
     arguments << "--capybara"  if @use_capybara.present?
     arguments << "--rspec"     if y?("Use with rspec?")
   end
+
+  run "bundle install"
 
   generate "cucumber:install #{arguments.join(" ")}"
 
