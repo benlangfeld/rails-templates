@@ -33,4 +33,4 @@ inject_into_file "config/application.rb", :after => "config.generators do |gener
   (" " * 6) + "generator.orm :active_record\n"
 end
 
-git :add => ".", :commit => "-m 'Use correct database'"
+commit_all 'Use correct database'

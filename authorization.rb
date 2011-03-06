@@ -9,9 +9,9 @@ if @cream
   options << "--strategy #{@cream_strategy}"
 
   generate "cream:full_config", options
-  git :add => ".", :commit => "-m 'Use Cream (Devise, CanCan & Roles Generic) for authentication and authorization'"
+  commit_all 'Use Cream (Devise, CanCan & Roles Generic) for authentication and authorization'
 end
 
 puts "Automatically protecting model attributes..."
 run "curl -s -L #{@templates_path}/resources/accessible_attributes.rb > config/initializers/accessible_attributes.rb"
-git :add => ".", :commit => "-m 'Automatically protect model attributes'"
+commit_all 'Automatically protect model attributes'

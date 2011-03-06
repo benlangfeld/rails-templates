@@ -38,13 +38,13 @@ inject_into_file "config/application.rb", :after => "config.generators do |gener
 end
 
 bundle
-git :add => ".", :commit => "-m 'Use factory_girl'"
+commit_all 'Use factory_girl'
 
 puts "Using infinity_test..."
 gem "ZenTest", :group => :test
 gem "infinity_test", :group => :test
 bundle
-git :add => ".", :commit => "-m 'Use infinity_test'"
+commit_all 'Use infinity_test'
 
 puts "Using Cucumber for acceptance testing, with Capybara and RSpec"
 gem 'database_cleaner', :group => :test
@@ -58,4 +58,4 @@ generate "cucumber:install", %w{--capybara --rspec}
 
 run "curl -s -L #{@templates_path}/resources/factory_girl_steps.rb > features/step_definitions/factory_girl_steps.rb"
 
-git :add => ".", :commit => "-m 'Use cucumber for acceptance testing'"
+commit_all 'Use cucumber for acceptance testing'

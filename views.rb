@@ -15,7 +15,7 @@ create_file "config/initializers/haml.rb" do
 end
 
 bundle
-git :add => ".", :commit => "-m 'Use HAML'"
+commit_all 'Use HAML'
 
 puts "Using jQuery..."
 gem "jquery-rails"
@@ -27,22 +27,22 @@ puts "Using simple navigation..."
 gem "simple-navigation"
 bundle
 generate "navigation_config"
-git :add => ".", :commit => "-m 'Use simple_navigation'"
+commit_all 'Use simple_navigation'
 
 puts "Using Kaminari for pagination..."
 gem "kaminari"
 bundle
-git :add => ".", :commit => "-m 'Use Kaminari'"
+commit_all 'Use Kaminari'
 
 puts "Using simple_form..."
 gem "simple_form"
 bundle
 generate "simple_form:install"
-git :add => ".", :commit => "-m 'Use simple_form'"
+commit_all 'Use simple_form'
 
 if @nifty_layout
   generate "nifty:layout", "-f", "--haml"
-  git :add => ".", :commit => "-m 'Add nifty layout'"
+  commit_all 'Add nifty layout'
 end
 
 if @web_app_theme
@@ -55,7 +55,7 @@ if @web_app_theme
 
   generate "web_app_theme:theme", options
 
-  git :add => ".", :commit => "-m 'Add web-app-theme layout'"
+  commit_all 'Add web-app-theme layout'
 
   puts "You might need to tidy up web-app-theme a lot if you use other template functionality."
 end
@@ -68,7 +68,7 @@ if @cappuccino
 
   run "echo 'Cappuccino/Build/*' >> .gitignore"
 
-  git :add => ".", :commit => "-m 'Added Cappuccino'"
+  commit_all 'Added Cappuccino'
 end
 
 puts "Adding a simple static home page..."
@@ -78,4 +78,4 @@ run "curl -s -L #{@templates_path}/resources/static/home.html.erb > app/views/st
 
 route "root :to => 'static#home'"
 
-git :add => ".", :commit => "-m 'Static home page'"
+commit_all 'Static home page'

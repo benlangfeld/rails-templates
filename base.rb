@@ -24,6 +24,10 @@ def bundle
   run "bundle install --quiet"
 end
 
+def commit_all(message = '')
+  git :add => ".", :commit => "-m '#{message}'"
+end
+
 @templates_path = "https://github.com/benlangfeld/rails-templates/raw/master"
 
 @nifty_layout = y? "Generate nifty layout?"
@@ -53,11 +57,11 @@ gem "nifty-generators", :group => :development
 
 bundle
 
-git :add => ".", :commit => "-m 'Base Rails app (with nifty generators)'"
+commit_all 'Base Rails app (with nifty generators)'
 
 say "Setting up the staging environment"
 run "cp config/environments/production.rb config/environments/staging.rb"
-git :add => ".", :commit => "-m 'Add staging environment'"
+commit_all 'Add staging environment'
 
 apply "#{@templates_path}/database.rb"
 apply "#{@templates_path}/testing.rb"
@@ -67,28 +71,28 @@ apply "#{@templates_path}/views.rb"
 puts "Using has_scope..."
 gem "has_scope"
 bundle
-git :add => ".", :commit => "-m 'Use has_scope'"
+commit_all 'Use has_scope'
 
 puts "Using simple_enum..."
 gem "simple_enum"
 bundle
-git :add => ".", :commit => "-m 'Use simple_enum'"
+commit_all 'Use simple_enum'
 
 puts "Using andand..."
 gem "andand"
 bundle
-git :add => ".", :commit => "-m 'Use andand'"
+commit_all 'Use andand'
 
 puts "Annotating models..."
 gem "annotate-models", :group => :development
 bundle
 run "annotate" # FIXME: reload shell first
-git :add => ".", :commit => "-m 'Annotate models'"
+commit_all 'Annotate models'
 
 if @adhearsion
   gem "adhearsion"
   gem "ahn-rails"
   bundle
   run "ahn create adhearsion" # FIXME: reload shell first
-  git :add => ".", :commit => "-m 'Add an Adhearsion app'"
+  commit_all 'Add an Adhearsion app'
 end
