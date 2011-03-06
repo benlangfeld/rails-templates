@@ -11,11 +11,11 @@
 #     rvm use 1.9.2
 
 # TODO: check prerequisites
-unless Gem.available?("rspec", ">= 2.0.0")
+unless Gem.available?("rvm")
   run "gem install rvm --no-rdoc --no-ri"
 
   Gem.refresh
-  Gem.activate("rvm")
+  Gem.activate "rvm"
 end
 
 require 'rvm'
