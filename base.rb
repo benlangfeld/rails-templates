@@ -22,7 +22,6 @@ def maybe_update_file(options = {})
 end
 
 def bundle
-  puts "Running bundle install..."
   run "bundle install --quiet"
 end
 
