@@ -7,7 +7,6 @@ if y?("Use rspec and rspec-rails?")
     (" " * 6) + "generator.test_framework :rspec, :views => false\n"
   end
 
-  gem 'rspec',            '>= 2.0.0', :group => :test
   gem 'rspec-rails',      '>= 2.0.0', :group => :test
   gem 'database_cleaner',             :group => :test
 
@@ -59,7 +58,6 @@ end
 
 if y?("Use Cucumber for acceptance testing?")
   gem 'database_cleaner', :group => :test
-  gem 'cucumber',         :group => :test
   gem 'cucumber-rails',   :group => :test
   gem 'launchy',          :group => :test
 
