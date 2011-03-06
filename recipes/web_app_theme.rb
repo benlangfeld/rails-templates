@@ -6,7 +6,7 @@ gem "web-app-theme", :git => "https://github.com/stevehodgkiss/web-app-theme.git
   options << "--app-name='#{app_name}'"
   options << "--theme=#{SETTINGS['web_app_theme']['theme']}" unless SETTINGS['web_app_theme']['theme'] == ''
 
-  generate "web_app_theme:theme", options
+  generate "web_app_theme:theme #{options.join ' '}"
 
   commit_all 'Add web-app-theme layout'
 
