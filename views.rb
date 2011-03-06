@@ -35,6 +35,12 @@ if y?("Use simple navigation?")
   git :add => ".", :commit => "-m 'Use simple_navigation'"
 end
 
+if y?("Use Kaminari for pagination?")
+  gem "kaminari"
+  run "bundle install"
+  git :add => ".", :commit => "-m 'Use Kaminari'"
+end
+
 if y?("Use will_paginate?")
   gem "will_paginate", "~> 3.0.pre2"
   run "bundle install"
