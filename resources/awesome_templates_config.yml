@@ -25,7 +25,7 @@ simple_form: true
 static: true
 
 cappuccino:
-  enabled: true
+  enabled: false
   cib_app: true
 
 # Misc stuff
@@ -33,9 +33,10 @@ has_scope: true
 simple_enum: true
 andand: true
 annotate_models: true
-adhearsion: false
-heroku: false
 auto_protect_model_attributes: true
+adhearsion: false
+
+heroku: false
 
 cream:
   enabled: false # Use Cream (Devise, CanCan & Roles Generic) for authentication and authorization?
