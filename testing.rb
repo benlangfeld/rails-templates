@@ -57,4 +57,6 @@ run "bundle install --quiet"
 
 generate "cucumber:install", %w{--capybara --rspec}
 
+run "curl -s -L #{@templates_path}/resources/factory_girl_steps.rb > features/step_definitions/factory_girl_steps.rb"
+
 git :add => ".", :commit => "-m 'Use cucumber for acceptance testing'"
