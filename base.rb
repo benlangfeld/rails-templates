@@ -1,15 +1,7 @@
 require 'yaml'
 
-def execute_stategies
-  @stategies.each { |stategy| stategy.call }
-end
-
 def recipe(name)
   File.join TEMPLATES_PATH, 'recipes', "#{name}.rb"
-end
-
-def y?(s)
-  yes? "\n#{s} (y/n)", :yellow
 end
 
 def commit_all(message = '')
@@ -26,7 +18,6 @@ SETTINGS = File.exists?(CONFIG_FILE) ? YAML.load_file(CONFIG_FILE) : {}
 git :init
 
 @stategies = []
-@template_options = {}
 
 apply recipe('rvm')
 apply recipe('cleanup')
@@ -44,4 +35,4 @@ run "bundle install --quiet"
 
 commit_all 'Include a bunch of gems'
 
-execute_stategies
+@stategies.each &:call
