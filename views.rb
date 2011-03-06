@@ -67,10 +67,10 @@ if y?("Generate web-app-theme layout?")
   options = []
 
   theme = ask "Which theme would you like to use? (none for default) "
-  options += ["--theme=#{theme}"] unless theme == ''
+  options << "--theme=#{theme}" unless theme == ''
 
   app_name = ask "What is the name of the application?"
-  options += ["--app-name=#{app_name}"] unless app_name == ''
+  options << "--app-name='#{app_name}'" unless app_name == ''
 
   generate "web_app_theme:theme", options.flatten
 
