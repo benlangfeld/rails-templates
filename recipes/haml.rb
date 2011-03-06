@@ -1,7 +1,7 @@
 gem 'haml'
 gem 'haml-rails'
 
-stategies << lambda do
+@stategies << lambda do
   inject_into_file "config/application.rb", :after => "config.generators do |generator|\n" do
     (" " * 6) + "generator.template_engine :haml\n"
   end

@@ -1,7 +1,7 @@
 gem 'rspec-rails',      '>= 2.0.0', :group => :test
 gem 'database_cleaner',             :group => :test
 
-stategies << lambda do
+@stategies << lambda do
   remove_file "test/"
 
   inject_into_file "config/application.rb", :after => "config.generators do |generator|\n" do

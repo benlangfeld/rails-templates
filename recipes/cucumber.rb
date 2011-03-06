@@ -5,7 +5,7 @@ gem 'database_cleaner', :group => :test
 gem 'launchy',          :group => :test
 gem @cuke_backend,      :group => :test
 
-stategies << lambda do
+@stategies << lambda do
   options = ["--#{@cuke_backend}"]
   options << "--rspec" if SETTINGS[:enabled_recipes].include? 'rspec'
 

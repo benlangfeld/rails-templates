@@ -1,35 +1,19 @@
 require 'yaml'
 
-module Rails
-  module Generators
-    class Actions
+def execute_stategies
+  @stategies.each { |stategy| stategy.call }
+end
 
-      attr_accessor :stategies
-      attr_reader :template_options
+def recipe(name)
+  File.join TEMPLATES_PATH, 'recipes', "#{name}.rb"
+end
 
-      def initialize_templater
-        @stategies = []
-        @template_options = {}
-      end
+def y?(s)
+  yes? "\n#{s} (y/n)", :yellow
+end
 
-      def execute_stategies
-        stategies.each { |stategy| stategy.call }
-      end
-
-      def recipe(name)
-        File.join TEMPLATES_PATH, 'recipes', "#{name}.rb"
-      end
-
-      def y?(s)
-        yes? "\n#{s} (y/n)", :yellow
-      end
-
-      def commit_all(message = '')
-        git :add => ".", :commit => "-m '#{message}'"
-      end
-
-    end
-  end
+def commit_all(message = '')
+  git :add => ".", :commit => "-m '#{message}'"
 end
 
 TEMPLATES_PATH = "https://github.com/benlangfeld/rails-templates/raw/master"
@@ -41,7 +25,8 @@ SETTINGS = File.exists?(CONFIG_FILE) ? YAML.load_file(CONFIG_FILE) : {}
 
 git :init
 
-initialize_templater
+@stategies = []
+@template_options = {}
 
 apply recipe('rvm')
 apply recipe('cleanup')

@@ -1,7 +1,7 @@
 gem 'mocha',                          :group => :test
 gem 'rspec-rails-mocha', '~> 0.3.0',  :group => :test
 
-stategies << lambda do
+@stategies << lambda do
   append_file "spec/spec_helper.rb" do
     "Mocha::Configuration.warn_when(:stubbing_non_existent_method)\n" +
     "Mocha::Configuration.warn_when(:stubbing_non_public_method)"

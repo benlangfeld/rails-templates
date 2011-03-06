@@ -1,4 +1,4 @@
-stategies << lambda do
+@stategies << lambda do
   run "capp gen #{app_name} -t #{SETTINGS['cappuccino']['cib_app'] ? "NibApplication" : "Application"}"
   run "mv #{app_name} Cappuccino"
 

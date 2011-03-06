@@ -1,6 +1,6 @@
 gem "cream"
 
-stategies << lambda do
+@stategies << lambda do
   options = []
   options << "--roles #{SETTINGS['cream']['roles'].join ' '}" unless SETTINGS['cream']['roles'].nil? || SETTINGS['cream']['roles'].empty?
   options << "--strategy #{SETTINGS['cream']['strategy']}"
