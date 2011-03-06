@@ -5,6 +5,7 @@ Requirements
 ------------
 * Rails 3
 * Bundler
+* Git
 
 Usage
 -----
