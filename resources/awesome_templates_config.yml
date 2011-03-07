@@ -4,13 +4,13 @@ enabled_recipes:
   - factory_girl
   - infinity_test
   - cucumber
-  # - nifty_layout
-  - web_app_theme
   - haml
   - jquery
+  - simple_form
+  # - nifty_layout
+  - web_app_theme
   - simple_navigation
   - kaminari
-  - simple_form
   - static
   - has_scope
   - simple_enum
