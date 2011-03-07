@@ -15,12 +15,12 @@ enabled_recipes:
   - has_scope
   - simple_enum
   - andand
-  - annotate_models
   - auto_protect_model_attributes
+  # - cream
+  - annotate_models
   # - cappuccino
   # - adhearsion
   # - heroku
-  # - cream
   # - github
 
 rspec:
