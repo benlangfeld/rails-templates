@@ -1,6 +1,6 @@
 gem "annotate-models", :group => :development
 
 @stategies << lambda do
-  run "annotate" # FIXME: reload shell first
+  run "bundle exec annotate"
   commit_all 'Annotate models'
 end
