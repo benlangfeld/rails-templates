@@ -23,9 +23,6 @@ enabled_recipes:
   # - heroku
   # - github
 
-rspec:
-  mocha: true
-
 cucumber:
   backend: capybara
 
