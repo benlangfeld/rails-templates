@@ -1,3 +1,5 @@
+gem 'hpricot', :group => :development if SETTINGS['enabled_recipes'].include? 'haml'
+gem 'ruby_parser', :group => :development if SETTINGS['enabled_recipes'].include? 'haml'
 gem "web-app-theme", :git => "https://github.com/stevehodgkiss/web-app-theme.git", :group => :development
 
 @stategies << lambda do
