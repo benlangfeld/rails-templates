@@ -31,7 +31,8 @@ gem "nifty-generators", :group => :development
 
 SETTINGS['enabled_recipes'].each { |recipe| apply recipe(recipe) }
 
-run "bundle install --quiet"
+run "bundle install --quiet --path vendor"
+run "bundle package"
 
 commit_all 'Include a bunch of gems'
 

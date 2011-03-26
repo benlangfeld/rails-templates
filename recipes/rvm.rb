@@ -25,16 +25,15 @@ create_file ".rvmrc" do
 #!/usr/bin/env bash
 
 ruby_string="ruby-1.9.2"
-gemset_name="#{app_name}"
 
 if rvm list strings | grep -q "${ruby_string}" ; then
 
   # Load or create the specified environment
   if [[ -d "${rvm_path:-$HOME/.rvm}/environments" \
-    && -s "${rvm_path:-$HOME/.rvm}/environments/${ruby_string}@${gemset_name}" ]] ; then
-    \. "${rvm_path:-$HOME/.rvm}/environments/${ruby_string}@${gemset_name}"
+    && -s "${rvm_path:-$HOME/.rvm}/environments/${ruby_string}" ]] ; then
+    \. "${rvm_path:-$HOME/.rvm}/environments/${ruby_string}"
   else
-    rvm --create "${ruby_string}@${gemset_name}"
+    rvm --create "${ruby_string}"
   fi
 
   (
@@ -44,7 +43,7 @@ if rvm list strings | grep -q "${ruby_string}" ; then
     fi
 
     # Bundle while redcing excess noise.
-    bundle install --quiet
+    bundle install --quiet --path vendor
   )&
 
 else
@@ -57,6 +56,3 @@ END
 end
 
 @env = RVM::Environment.new 'ruby-1.9.2'
-
-@env.gemset_create app_name
-@env.gemset_use! app_name
