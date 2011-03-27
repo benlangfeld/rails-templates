@@ -22,6 +22,7 @@ enabled_recipes:
   # - adhearsion
   # - heroku
   # - github
+  # - newrelic_rpm
 
 cucumber:
   backend: capybara
@@ -41,3 +42,6 @@ cream:
 github:
   username: your_username
   repo_name: your_repo_name
+
+newrelic_rpm:
+  account_id: 12345
