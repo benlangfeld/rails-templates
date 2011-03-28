@@ -2,7 +2,7 @@ gem "capistrano"
 gem "capistrano-ext"
 
 @stategies << lambda do
-  capify!
+  run "bundle exec capify"
   app_name = SETTINGS['capistrano']['app_name']
   server = SETTINGS['capistrano']['server']
 
