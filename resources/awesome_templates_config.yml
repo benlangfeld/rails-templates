@@ -13,7 +13,9 @@ enabled_recipes:
   - kaminari
   - static
   - has_scope
+  - inherited_resources
   - simple_enum
+  - meta_search_where # meta_search and meta_where
   - andand
   - auto_protect_model_attributes
   # - cream
@@ -22,6 +24,7 @@ enabled_recipes:
   # - adhearsion
   # - heroku
   # - github
+  # - capistrano
   # - newrelic_rpm
 
 cucumber:
@@ -38,6 +41,11 @@ cream:
   roles:
     - 'guest'
     - 'admin'
+
+capistrano:
+  app_name: someapp
+  server: alpha.someapp.com
+  git_repo: git@github.com:aentos/app.git
 
 github:
   username: your_username
