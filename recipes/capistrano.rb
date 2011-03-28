@@ -13,6 +13,9 @@ gem "capistrano-ext"
   set :user,          "deploy"
   set :deploy_to,     "/var/rails/#{app_name}_staging"
 
+  set(:current_branch) { `git branch`.match(/\* (\S+)\s/m)[1] || raise("Couldn't determine current branch") }
+  set :branch, defer { current_branch }
+
   # Server Roles
   role :web, "#{server}"
   role :app, "#{server}"
@@ -27,6 +30,7 @@ gem "capistrano-ext"
   # Application Settings
   set :user,          "deploy"
   set :deploy_to,     "/var/rails/#{app_name}_production"
+  set :branch,        "master"
 
   # Server Roles
   role :web, "#{server}"
