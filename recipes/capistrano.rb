@@ -60,7 +60,7 @@ gem "capistrano-ext"
   namespace :deploy do
     desc "Restart app"
     task :restart, :roles => :app do
-      run "touch #{release_path}/tmp/restart.txt"
+      run "touch \#{release_path}/tmp/restart.txt"
     end
   end
   FILE
