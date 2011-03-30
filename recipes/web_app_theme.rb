@@ -2,7 +2,7 @@ gem 'hpricot', :group => :development if SETTINGS['enabled_recipes'].include? 'h
 gem 'ruby_parser', :group => :development if SETTINGS['enabled_recipes'].include? 'haml'
 gem "web-app-theme", :git => "https://github.com/stevehodgkiss/web-app-theme.git", :group => :development
 
-@stategies << lambda do
+@strategies << lambda do
   options = []
   options << "--engine=haml" if SETTINGS['enabled_recipes'].include? 'haml'
   options << "--app-name='#{app_name}'"

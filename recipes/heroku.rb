@@ -1,7 +1,7 @@
 gem 'heroku', :group => :development
 gem 'heroku_san', :group => :development
 
-@stategies << lambda do
+@strategies << lambda do
   rake 'heroku:create_config'
   rake 'all heroku:create heroku:remotes heroku:rack_env'
 

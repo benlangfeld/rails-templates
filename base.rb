@@ -17,7 +17,7 @@ SETTINGS = File.exists?(CONFIG_FILE) ? YAML.load_file(CONFIG_FILE) : {}
 
 git :init
 
-@stategies = []
+@strategies = []
 
 create_file ".rvmrc" do
   "rvm use 1.9.2"
@@ -39,4 +39,4 @@ run "bundle package"
 
 commit_all 'Include a bunch of gems'
 
-@stategies.each &:call
+@strategies.each &:call

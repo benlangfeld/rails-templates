@@ -1,7 +1,7 @@
 gem "capistrano"
 gem "capistrano-ext"
 
-@stategies << lambda do
+@strategies << lambda do
   run "bundle exec capify ."
   app_name = SETTINGS['capistrano']['app_name']
   server = SETTINGS['capistrano']['server']
