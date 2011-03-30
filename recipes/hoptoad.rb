@@ -1,5 +1,8 @@
 gem 'hoptoad_notifier'
 
 @strategies << lambda do
-  generate 'hoptoad', "--api-key #{SETTINGS['hoptoad']['api_key']}"
+  begin
+    generate 'hoptoad', "--api-key #{SETTINGS['hoptoad']['api_key']}"
+  rescue
+  end
 end
