@@ -19,7 +19,10 @@ git :init
 
 @stategies = []
 
-apply recipe('rvm')
+create_file ".rvmrc" do
+  "rvm use 1.9.2"
+end
+
 apply recipe('cleanup')
 apply recipe('database')
 
