@@ -41,9 +41,6 @@ if rvm list strings | grep -q "${ruby_string}" ; then
     if ! command -v bundle ; then
       gem install bundler
     fi
-
-    # Bundle while redcing excess noise.
-    bundle install --quiet --path vendor
   )&
 
 else
