@@ -50,6 +50,3 @@ capistrano:
 github:
   username: your_username
   repo_name: your_repo_name
-
-newrelic_rpm:
-  account_id: 12345
