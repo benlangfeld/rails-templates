@@ -26,6 +26,7 @@ enabled_recipes:
   # - github
   # - capistrano
   # - newrelic_rpm
+  # - hoptoad
 
 cucumber:
   backend: capybara
@@ -50,3 +51,6 @@ capistrano:
 github:
   username: your_username
   repo_name: your_repo_name
+
+hoptoad:
+  api_key: yourhoptoadapikey
