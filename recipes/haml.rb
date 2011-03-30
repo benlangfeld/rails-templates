@@ -9,7 +9,7 @@ gem 'haml-rails'
   create_file "config/initializers/haml.rb" do
     <<-HAML
     Haml::Template.options[:attr_wrapper] = '\"'
-    Haml::Template.options[:format] = :xhtml
+    Haml::Template.options[:format] = :html5
     Sass::Plugin.options[:style] = :expanded
     HAML
   end
