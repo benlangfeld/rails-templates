@@ -1,6 +1,8 @@
 @stategies << lambda do
-  run "capp gen #{app_name} -t #{SETTINGS['cappuccino']['cib_app'] ? "NibApplication" : "Application"}"
-  run "mv #{app_name} Cappuccino"
+  in_root do
+    run "capp gen #{app_name} -t #{SETTINGS['cappuccino']['cib_app'] ? "NibApplication" : "Application"}"
+    run "mv #{app_name} Cappuccino"
+  end
 
   append_file '.gitignore', "Cappuccino/Build/*"
 
