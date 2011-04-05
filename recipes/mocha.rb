@@ -8,4 +8,6 @@ gem 'rspec-rails-mocha', '~> 0.3.0',  :group => :test
   end
 
   gsub_file "spec/spec_helper.rb", /config\.mock_with :rspec/, "config.mock_with :mocha"
+
+  commit_all 'Use rspec for testing'
 end

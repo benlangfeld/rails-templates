@@ -12,7 +12,7 @@ gem 'database_cleaner',             :group => :test
 
   append_file("spec/spec_helper.rb") { "\nDatabaseCleaner.strategy = :truncation\n" }
 
-  append_file(".rspec") { "\n--tty\n format documentation\n" }
+  append_file(".rspec") { "\n--tty\n--format documentation\n" }
 
   git :add => ".", :rm => "test/*", :commit => "-m 'Use rspec for testing'"
 end
