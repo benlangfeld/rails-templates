@@ -15,7 +15,7 @@
     <<-PAYPAL
     config_filename = "#{Rails.root}/config/active_merchant_paypal.yml"
     config = if File.exists?(config_filename)
-      c = YAML::load File.open(config_filename)
+      c = YAML.load_file config_filename
       {:login => c['login'], :password => c['password'], :signature => c['signature']}
     else
       {:login => ENV['PP_LOGIN'], :password => ENV['PP_PASSWORD'], :signature => ENV['PP_SIGNATURE']}
