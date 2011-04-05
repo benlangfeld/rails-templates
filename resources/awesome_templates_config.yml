@@ -20,6 +20,8 @@ enabled_recipes:
   - auto_protect_model_attributes
   # - cream
   # - delayed_job
+  # - active_merchant
+  # - active_merchant_paypal
   - annotate_models
   # - cappuccino
   # - adhearsion
