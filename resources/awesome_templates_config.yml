@@ -19,6 +19,7 @@ enabled_recipes:
   - andand
   - auto_protect_model_attributes
   # - cream
+  # - delayed_job
   - annotate_models
   # - cappuccino
   # - adhearsion

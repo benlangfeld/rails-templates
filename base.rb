@@ -39,4 +39,10 @@ run "bundle package"
 
 commit_all 'Include a bunch of gems'
 
-@strategies.each &:call
+begin
+  @strategies.each &:call
+rescue
+  puts "**************** Recipe Failed to execute ****************"
+end
+
+puts "You must now create the appropriate databases, clean up the Gemfile and run any pending migrations."
