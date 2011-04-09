@@ -4,6 +4,7 @@ enabled_recipes:
   - factory_girl
   - infinity_test
   - cucumber
+  - jasmine
   - haml
   - jquery
   - simple_form
