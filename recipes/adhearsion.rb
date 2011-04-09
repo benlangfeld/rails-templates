@@ -1,6 +1,7 @@
 gem "ahn-rails"
 
 @strategies << lambda do
-  run "bundle exec rails g ahn:app"
+  generate "ahn:app"
+  generate "ahn:deployment", app_name
   commit_all 'Add an Adhearsion app'
 end

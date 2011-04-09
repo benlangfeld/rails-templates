@@ -24,11 +24,11 @@ enabled_recipes:
   # - active_merchant
   # - active_merchant_paypal
   - annotate_models
-  # - cappuccino
-  # - adhearsion
   # - heroku
   # - github
   # - capistrano
+  # - cappuccino
+  # - adhearsion
   # - newrelic_rpm
   # - hoptoad # This must be last since it will kill the generators
 
