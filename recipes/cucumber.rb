@@ -1,6 +1,6 @@
 @cuke_backend = SETTINGS['cucumber']['backend'] || 'capybara'
 
-gem 'cucumber-rails',   :group => :test, :git => "git://github.com/aslakhellesoy/cucumber-rails.git"
+gem 'cucumber-rails',   :group => :test
 gem 'database_cleaner', :group => :test
 gem 'launchy',          :group => :test
 gem @cuke_backend,      :group => :test
